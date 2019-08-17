@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>&quot;https://ara-framework.github.io/blog</id>
+    <title>Ara Framework Blog</title>
+    <updated>2019-08-17T06:00:00Z</updated>
+    <generator>Feed for Node.js</generator>
+    <link rel="alternate" href="&quot;https://ara-framework.github.io/blog"/>
+    <subtitle>The best place to stay up-to-date with the latest Ara Framework news and events.</subtitle>
+    <logo>&quot;https://ara-framework.github.io/img/ara.png</logo>
+    <rights>Copyright © 2019 Ara Framework</rights>
+    <entry>
+        <title type="html"><![CDATA[Implementing Microfrontends in GatsbyJS using Ara Framework]]></title>
+        <id>&quot;https://ara-framework.github.io/blog/2019/08/17/gatsby-js.html</id>
+        <link href="&quot;https://ara-framework.github.io/blog/2019/08/17/gatsby-js.html">
+        </link>
+        <updated>2019-08-17T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://www.gatsbyjs.org/">GatsbyJS</a> is the most popular framework to create static websites. In the software industry, the concept of static site generators is not recent but it’s becoming more popular thanks to the recent evolution of the JavaScript technologies and the introduction of <a href="https://jamstack.org/">JAMstack</a>.</p>
+]]></summary>
+        <author>
+            <name>Felipe Guizar Diaz</name>
+            <uri>https://twitter.com/felipeguizard</uri>
+        </author>
+    </entry>
+</feed>

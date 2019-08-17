@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Implementing Microfrontends in GatsbyJS using Ara Framework · Ara Framework</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="[GatsbyJS](https://www.gatsbyjs.org/) is the most popular framework to create static websites. In the software industry, the concept of static site generators is not recent but it’s becoming more popular thanks to the recent evolution of the JavaScript technologies and the introduction of [JAMstack](https://jamstack.org/)."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Implementing Microfrontends in GatsbyJS using Ara Framework · Ara Framework"/><meta property="og:type" content="website"/><meta property="og:url" content="&quot;https://ara-framework.github.io/blog/2019/08/17/gatsby-js"/><meta property="og:description" content="[GatsbyJS](https://www.gatsbyjs.org/) is the most popular framework to create static websites. In the software industry, the concept of static site generators is not recent but it’s becoming more popular thanks to the recent evolution of the JavaScript technologies and the introduction of [JAMstack](https://jamstack.org/)."/><meta property="og:image" content="&quot;https://ara-framework.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="&quot;https://ara-framework.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css"/><link rel="alternate" type="application/atom+xml" href="&quot;https://ara-framework.github.io/blog/atom.xml" title="Ara Framework Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="&quot;https://ara-framework.github.io/blog/feed.xml" title="Ara Framework Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/ara.png" alt="Ara Framework"/><h2 class="headerTitleWithLogo">Ara Framework</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/quick-start" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2019/08/17/gatsby-js">Implementing Microfrontends in GatsbyJS using Ara Framework</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2019/08/17/gatsby-js">Implementing Microfrontends in GatsbyJS using Ara Framework</a></h1><p class="post-meta">August 17, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/felipeguizard" target="_blank" rel="noreferrer noopener">Felipe Guizar Diaz</a></p><div class="authorPhoto"><a href="https://twitter.com/felipeguizard" target="_blank" rel="noreferrer noopener"><img src="https://www.gravatar.com/avatar/5c0f68aec4986617a543a5699032075e" alt="Felipe Guizar Diaz"/></a></div></div></header><div><span><p><a href="https://www.gatsbyjs.org/">GatsbyJS</a> is the most popular framework to create static websites. In the software industry, the concept of static site generators is not recent but it’s becoming more popular thanks to the recent evolution of the JavaScript technologies and the introduction of <a href="https://jamstack.org/">JAMstack</a>.</p>
+<!--truncate-->
+<p>GatsbyJS enable us to deliver fast and reliable websites that are easy and cheap to host in any cloud provider, for instance, <a href="https://zeit.co/">Zeit</a>, <a href="https://www.netlify.com/">Netlify</a>, and others are services that make easier this duty.</p>
+<h2><a class="anchor" aria-hidden="true" id="jamstack-and-aws-lambda"></a><a href="#jamstack-and-aws-lambda" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JAMstack and AWS Lambda</h2>
+<p>The main characteristic of JAMstack is that the computing resources are provisioned on-demand only during build-time to generate the static pages, commonly using a serverless CI/CD tool such as CircleCI or Travis CI, which free us of managing dedicated servers.</p>
+<p><img src="/img/0_lbuc243qwiUZl1ax.png" alt="GatsbyJS Diagram"></p>
+<p><a href="https://aws.amazon.com/lambda/">AWS Lambda</a> works in a similar way, it runs a function triggered by a webhook, commonly using a lambda integration with other AWS services such as API Gateway, SNS, SQS and more.
+Following this premise, we can deploy a lambda function that generates and stores HTML inside an S3 bucket or why not, a lambda function that renders HTML on demand.</p>
+<h2><a class="anchor" aria-hidden="true" id="what-do-microfrontends-role-play-here"></a><a href="#what-do-microfrontends-role-play-here" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What do Microfrontends role play here?</h2>
+<p>Microfronteds like Microservices enable teams to develop and ship features independently.</p>
+<p>The level of isolation enables us to integrate different frameworks into the same page. However it doesn’t mean that we should mix frameworks arbitrarily, we should define standard frameworks and libraries across the company.</p>
+<p>On the other hand, Frontend technologies evolve fast and the true fact is that at some point we need to move to another framework. Therefore, Microfrontends give us the flexibility to gradually switch to another one without rebuilding the Frontend from scratch.</p>
+<h3><a class="anchor" aria-hidden="true" id="the-scenario"></a><a href="#the-scenario" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The scenario</h3>
+<p>We can imagine that we’re a media company that have a lot of websites shipped across the world that are maintained by different teams. We love React but we’ve fallen in love with VueJs in the last years, so it became our standard library to develop the UI.</p>
+<p>Our product team wants to experiment with a new media website and the JAMstack fits in the solution, but we realized that the current frameworks for VueJS don’t have the necessary features that we need.</p>
+<p>Then we discovered that GatsbyJS has what we need. But we have another problem, the new website needs to reuse some views that were developed using VueJS previously, we could migrate those views to React but we don’t have enough time and we don’t want to maintain both in the future.</p>
+<p>Luckily one of our members recently read about Microfrontends and suggested it. We said, “why not, let’s give it a try”.</p>
+<h2><a class="anchor" aria-hidden="true" id="microfrontend-nova"></a><a href="#microfrontend-nova" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Microfrontend (Nova)</h2>
+<p><a href="https://github.com/ara-framework/hypernova-lambda">Hypernova Lambda</a> is an implementation of <a href="https://github.com/airbnb/hypernova">Airbnb’s Hypernova</a> for AWS Lambda. Hypernova is service to server-side render JavaScript views that are hydrated on the browser to make them dynamic, it’s also known as universal rendering.</p>
+<p>In Ara Framework we commonly called Nova to the Hypernova services.</p>
+<h3><a class="anchor" aria-hidden="true" id="creating-a-microfrontend-nova"></a><a href="#creating-a-microfrontend-nova" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Creating a Microfrontend (Nova)</h3>
+<p>We need to install the <a href="https://github.com/ara-framework/ara-cli">Ara CLI</a> to perform some common tasks such as generate nova services, run hypernova lambda locally and serve the client-side scripts.</p>
+<pre><code class="hljs css language-shell">npm install -g ara-cli
+</code></pre>
+<p>Once the CLI is installed we can generate a new Nova service running the following command:</p>
+<pre><code class="hljs css language-shell">ara new:nova -t vue novas/global
+</code></pre>
+<p>Output:</p>
+<p><img src="/img/1_p1xWHmakQ147zbISb-zZyg.png" alt="new:nova output"></p>
+<p>The generated project contains a basic setup. We kept it simple to make it. customizable.</p>
+<p><strong>Entry point:</strong>
+The file <code>src/index.js</code> contains the entry point for the Hypernova server. It uses Express by default but we’ll implement AWS Lambda later.</p>
+<pre><code class="hljs"><span class="hljs-keyword">import</span> hypernova <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova/server'</span>
+<span class="hljs-keyword">import</span> { renderVue, Vue } <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova-vue'</span>
+<span class="hljs-keyword">import</span> express <span class="hljs-keyword">from</span> <span class="hljs-string">'express'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-type">path</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'path'</span>
+
+<span class="hljs-keyword">import</span> Example <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Example.vue'</span>
+
+hypernova({
+  devMode: process.env.NODE_ENV !== <span class="hljs-string">'production'</span>,
+  getComponent (<span class="hljs-type">name</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-type">name</span> === <span class="hljs-string">'Example'</span>) {
+      <span class="hljs-keyword">return</span> renderVue(<span class="hljs-type">name</span>, Vue.extend(Example))
+    }
+  },
+  port: process.env.PORT || <span class="hljs-number">3000</span>,
+
+  createApplication () {
+    const app = express()
+
+    app.use(<span class="hljs-string">'/public'</span>, express.static(<span class="hljs-type">path</span>.<span class="hljs-keyword">join</span>(process.cwd(), <span class="hljs-string">'dist'</span>)))
+
+    <span class="hljs-keyword">return</span> app
+  }
+})
+</code></pre>
+<p><strong>Example component:</strong></p>
+<p>The <code>src/components/Example.vue</code> file renders a basic view using the <code>title</code> prop.</p>
+<pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{title}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'title'</span>]
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+<p>We can run the service using this command:</p>
+<pre><code class="hljs css language-shell">yarn dev
+</code></pre>
+<p>Once the Hypernova server is running we will see the next message.</p>
+<p>Output:</p>
+<p><img src="/img/1_xUz4UslQbZ40MDwgu7g-kg.png" alt="nova server running output"></p>
+<p>We can test the service making a <code>POST</code> request to <code>http://localhost:3000/batch</code> using the following payload:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"uuid"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+    <span class="hljs-attr">"data"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Ara Framework"</span>
+    }
+  }
+}
+</code></pre>
+<p>The response should be something like:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">"results"</span>: {
+        <span class="hljs-attr">"uuid"</span>: {
+            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+            <span class="hljs-attr">"html"</span>: <span class="hljs-string">"&lt;div data-hypernova-key=\"Example\" data-hypernova-id=\"cfd4b502-f9a4-4475-9168-233595ea4489\"&gt;&lt;h1 data-server-rendered=\"true\"&gt;Ara Framework&lt;/h1&gt;&lt;/div&gt;\n&lt;script type=\"application/json\" data-hypernova-key=\"Example\" data-hypernova-id=\"cfd4b502-f9a4-4475-9168-233595ea4489\"&gt;&lt;!--{\"title\":\"Ara Framework\"}--&gt;&lt;/script&gt;"</span>,
+            <span class="hljs-attr">"meta"</span>: {},
+            <span class="hljs-attr">"duration"</span>: <span class="hljs-number">11.534634</span>,
+            <span class="hljs-attr">"statusCode"</span>: <span class="hljs-number">200</span>,
+            <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
+        }
+    }
+}
+</code></pre>
+<p>We can notice the response contains the generated HTML for the <code>Example</code> view.</p>
+<h3><a class="anchor" aria-hidden="true" id="implementing-hypernova-lambda"></a><a href="#implementing-hypernova-lambda" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing Hypernova Lambda</h3>
+<p>First, we need to install hypernova-lambda.</p>
+<pre><code class="hljs css language-shell">yarn add hypernova-lambda
+</code></pre>
+<p>We need to modify the entry point to use <code>hypernova-lambda</code>.</p>
+<pre><code class="hljs css language-js">
+<span class="hljs-keyword">import</span> { renderVue, Vue } <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova-vue'</span>
+<span class="hljs-keyword">import</span> hypernova <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova-lambda'</span>
+<span class="hljs-keyword">import</span> Example <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Example.vue'</span>
+
+<span class="hljs-keyword">const</span> getComponent = <span class="hljs-function">(<span class="hljs-params">name</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (name === <span class="hljs-string">'Example'</span>) {
+    <span class="hljs-keyword">return</span> renderVue(name, Vue.extend(Example))
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> handler = <span class="hljs-function">(<span class="hljs-params">event, context, callback</span>) =&gt;</span> {
+  hypernova(event, { getComponent }, callback)
+}
+</code></pre>
+<p>We also need to remove the <code>NodemonPlugin</code> in <code>webpack.config.js</code>.</p>
+<pre><code class="hljs css language-js">{
+  ...
+  plugins: [
+    <span class="hljs-keyword">new</span> VueLoaderPlugin(),
+    <span class="hljs-keyword">new</span> NodemonPlugin() <span class="hljs-comment">// Remove Nodemon plugin</span>
+  ]
+}
+</code></pre>
+<p>We can run the lambda function locally using the CLI:</p>
+<pre><code class="hljs css language-shell">ara run:lambda
+</code></pre>
+<p>Output:</p>
+<p><img src="/img/1_iZpfY93ddLDP0jRhKXRz9A.png" alt="run:lambda ouput"></p>
+<p>Also, we can serve the client script locally using an S3 local server:</p>
+<pre><code class="hljs css language-shell">ara run:lambda --asset
+</code></pre>
+<p>Output:</p>
+<p><img src="/img/1_fu7nixAMWx9SsT6Md3hBww.png" alt="run:lambda --asset output"></p>
+<p>We can access to the client-side scripts using <a href="http://127.0.0.1:4568/assets/client.js">http://127.0.0.1:4568/assets/client.js</a></p>
+<p>For this demo, we’ll test hypernova lambda locally. I won’t cover the deployment approach, it’s up to you.</p>
+<h2><a class="anchor" aria-hidden="true" id="gatsbyjs-project"></a><a href="#gatsbyjs-project" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GatsbyJS project</h2>
+<p>GatsbyJS has it’s own CLI to perform common tasks such as create a project, run a development server, build the website and more.</p>
+<p>First, we need to install it:</p>
+<pre><code class="hljs css language-shell">npm install -g gatsby-cli
+</code></pre>
+<p>We can use the CLI to create a new project:</p>
+<pre><code class="hljs css language-shell">gatsby new gatsby-site
+</code></pre>
+<p>We can run the development server:</p>
+<pre><code class="hljs css language-shell">yarn develop
+</code></pre>
+<p>This command compiles the assets and runs a development server on <a href="http://localhost:8000/">http://localhost:8000/</a></p>
+<p>Browser:</p>
+<p><img src="/img/1_akLqBO85oIM8mAKJoWxK0Q.png" alt="Gatsby project home page"></p>
+<p>We have our Nova service and Gatsby running, it’s time to integrate our <code>Example</code> view into a Gatsby page.</p>
+<h2><a class="anchor" aria-hidden="true" id="nova-bridge"></a><a href="#nova-bridge" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nova Bridge</h2>
+<p>The Nova bridge enables us to integrate and render Nova views using any view library like React.</p>
+<p><img src="/img/1_1LXUoTxvmX7GNsmLlFv-eA.png" alt="Nova Bridge diagram"></p>
+<ol>
+<li>The Nova Bridge emits a <code>NovaMount</code> event to let now to the Nova service that a view needs to be rendered and mounted.</li>
+<li>The client-side entry point listens to the event and uses the event payload information to render the view.</li>
+<li>The client-side entry point mounts the rendered view in the Nova Bridge placeholder.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="implementing-nova-bridge"></a><a href="#implementing-nova-bridge" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implementing Nova Bridge</h3>
+<p>We need to install <a href="https://github.com/ara-framework/nova-react-bridge">nova-react-bridge</a>.</p>
+<pre><code class="hljs css language-shell">yarn add nova-react-bridge
+</code></pre>
+<p>Once the package is installed we can place a Nova view inside a React component. We’ll render the <code>Example</code> view on the home page.</p>
+<p>The Nova component requires the <code>name</code> and <code>data</code> props.</p>
+<pre><code class="hljs css language-jsx"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Nova</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Example<span class="token punctuation">"</span></span> <span class="token attr-name">data</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'Ara Framework'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+</code></pre>
+<p>We need to edit the file <code>src/pages/index.js</code>.</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+<span class="token keyword">import</span> Image <span class="token keyword">from</span> <span class="token string">"../components/image"</span>
+<span class="token keyword">import</span> <span class="token constant">SEO</span> <span class="token keyword">from</span> <span class="token string">"../components/seo"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Nova <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'nova-react-bridge'</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">IndexPage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SEO</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Home<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Nova</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Example<span class="token punctuation">"</span></span> <span class="token attr-name">data</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'Ara Framework'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hi people<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Welcome to your <span class="token keyword">new</span> <span class="token class-name">Gatsby</span> site<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Now go build something great<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> maxWidth<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">300px</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> marginBottom<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">1.45rem</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Image</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/page-2/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Go to page <span class="token number">2</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> IndexPage
+</code></pre>
+<p>We also need to modify the client-side script in our Nova service to listen to the <code>NovaMount</code> event and mount the view. It’s located in <code>novas/global/src/client.js</code>.</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { renderInPlaceholder, Vue } <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova-vue'</span>
+<span class="hljs-keyword">import</span> Example <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Example.vue'</span>
+
+<span class="hljs-keyword">const</span> { <span class="hljs-built_in">document</span> } = global
+
+<span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'NovaMount'</span>, (event) =&gt; {
+  <span class="hljs-keyword">const</span> { <span class="hljs-attr">detail</span>: { name, id } } = event
+
+  <span class="hljs-keyword">if</span> (name === <span class="hljs-string">'Example'</span>) {
+    <span class="hljs-keyword">return</span> renderInPlaceholder(name, Vue.extend(Example), id)
+  }
+})
+</code></pre>
+<p>The client-side entry point is pretty similar to the server. It uses the <code>name</code> and <code>id</code> from the event to render and mount the view.</p>
+<p>Finally, we need to add the entry point script in the <code>html.js</code> file. GatsbyJS uses a default HTML template, so we need copy and override it.</p>
+<pre><code class="hljs css language-shell">cp .cache/default-html.js src/html.js
+</code></pre>
+<p><code>html.js</code></p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> PropTypes <span class="token keyword">from</span> <span class="token string">"prop-types"</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">function</span> <span class="token constant">HTML</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token spread"><span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token attr-value">props</span><span class="token punctuation">.</span><span class="token attr-value">htmlAttributes</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charSet</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">httpEquiv</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>x-ua-compatible<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ie=edge<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span>
+          <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span>
+          <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1, shrink-to-fit=no<span class="token punctuation">"</span></span>
+        <span class="token punctuation">/></span></span>
+        <span class="token punctuation">{</span>props<span class="token punctuation">.</span>headComponents<span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token spread"><span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token attr-value">props</span><span class="token punctuation">.</span><span class="token attr-value">bodyAttributes</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span>props<span class="token punctuation">.</span>preBodyComponents<span class="token punctuation">}</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>noscript</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>noscript<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gatsby-noscript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+          This app works best <span class="token keyword">with</span> JavaScript enabled<span class="token punctuation">.</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>noscript</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span>
+          <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">body</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span></span>
+          <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>___gatsby<span class="token punctuation">"</span></span>
+          <span class="token attr-name">dangerouslySetInnerHTML</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> __html<span class="token punctuation">:</span> props<span class="token punctuation">.</span>body <span class="token punctuation">}</span><span class="token punctuation">}</span></span>
+        <span class="token punctuation">/></span></span>
+        <span class="token punctuation">{</span>props<span class="token punctuation">.</span>postBodyComponents<span class="token punctuation">}</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://127.0.0.1:4568/assets/client.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token constant">HTML</span><span class="token punctuation">.</span>propTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+  htmlAttributes<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>object<span class="token punctuation">,</span>
+  headComponents<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>array<span class="token punctuation">,</span>
+  bodyAttributes<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>object<span class="token punctuation">,</span>
+  preBodyComponents<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>array<span class="token punctuation">,</span>
+  body<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>string<span class="token punctuation">,</span>
+  postBodyComponents<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>array<span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>We need to run the development server again.</p>
+<pre><code class="hljs css language-shell">yarn develop
+</code></pre>
+<p>The <code>Example</code> view shows a heading with the text “Ara Framework”.</p>
+<p><img src="/img/1_LCUNxnpPoyIouqCiQ4shNQ.png" alt="gatsby page with ara"></p>
+<p>I know the <code>Example</code> view is so simple, let’s make it more interactive.</p>
+<pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{title}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">hr</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"title"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Type Something"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'title'</span>]
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+<p><img src="/img/1_QGnGgOp8gq9nX_7BsMlviA.png" alt="gatsby with ara"></p>
+<p>We added an input control to change the heading text. So let’s go to generate our static website.</p>
+<h2><a class="anchor" aria-hidden="true" id="generating-static-website-using-gatsbyjs"></a><a href="#generating-static-website-using-gatsbyjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating static website using GatsbyJS</h2>
+<p>First, we need to build our GatsbyJS project:</p>
+<pre><code class="hljs css language-shell">yarn build
+</code></pre>
+<p><img src="/img/1_Iqzjpl9WxiZEXZ2SJ0Cf1g.png" alt="gatsby build output"></p>
+<p>This command created a folder named <code>public</code> that contains the generated files.</p>
+<p>We can use the GatsbyJS CLI to run a server to consume the static files:</p>
+<pre><code class="hljs css language-shell">yarn serve
+</code></pre>
+<p>This command will run the server on <a href="http://localhost:9000">http://localhost:9000</a>. Looking at the generated HTML we can notice that GatsbyJS only renders the placeholder, it didn’t render the Nova view.</p>
+<p><img src="/img/1_0FmwXJnJcdaDLSxY1ztVng.png" alt="server-side rendered html"></p>
+<p>We need to use <a href="https://github.com/ara-framework/nova-static">Nova Static</a> to include the rendered views by the Nova service.</p>
+<h2><a class="anchor" aria-hidden="true" id="include-nova-views-using-nova-static"></a><a href="#include-nova-views-using-nova-static" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Include Nova views using Nova Static</h2>
+<p>Nova Static is a tool part of the Ara Framework that enables us to include Nova views in static HTML files.</p>
+<p><img src="/img/1_6Xfi3GoFGuRcSwSEZaEB_A.png" alt="NOva Static Diagram"></p>
+<ol>
+<li>The static site generator generates static files (HTML, CSS, JS, etc).</li>
+<li>Nova Static reads the HTML files.</li>
+<li>Nova Static parses and scrapes the HTML to create a request payload for the Nova service (Hypernova Lambda).</li>
+<li>Nova Static requests the Nova views to the Nova service.</li>
+<li>The Nova service server-side renders the views and sends them back to Nova Static.</li>
+<li>Nova Static replace the placeholders with the rendered HTML by the Nova service (Transclusion).</li>
+<li>Nova Static replaces the content of the HTML file with the new one.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="installing-nova-static"></a><a href="#installing-nova-static" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installing Nova Static</h3>
+<p>Nova Static is developed using Go, therefore we need to use in our CI/CD a container with GO installed.</p>
+<p>We can install the executable:</p>
+<pre><code class="hljs css language-shell">export GOPATH=~/go
+
+go get github.com/ara-framework/nova-static/nova-static
+
+go install github.com/ara-framework/nova-static/nova-static
+
+export PATH="$PATH:$GOPATH/bin"
+</code></pre>
+<p>The executable should be available running the command <code>nova-static</code> , we’ll use it next.</p>
+<h3><a class="anchor" aria-hidden="true" id="running-nova-static"></a><a href="#running-nova-static" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Running Nova Static</h3>
+<p>First, we need to define some environment variables:</p>
+<p><code>HYPERNOVA_BATCH</code> is the endpoint to requests views to the Nova service.</p>
+<pre><code class="hljs css language-shell">export HYPERNOVA_BATCH=http://localhost:3000/batch
+</code></pre>
+<p><code>STATIC_FOLDER</code> is the folder that contains the static files.</p>
+<pre><code class="hljs css language-shell">/* Relative path from the gatsby project */
+export STATIC_FOLDER=./public
+</code></pre>
+<p>Once the environment variables are exported we can run the nova-static command.</p>
+<pre><code class="hljs css language-shell">nova-static
+</code></pre>
+<p>Output:</p>
+<p><img src="/img/1_wodj2jlGvz6LqIJ5HiCVtw.png" alt="nova-static output"></p>
+<p>Running the server we can notice the Nova views were included in the static files.</p>
+<pre><code class="hljs css language-shell">yarn serve
+</code></pre>
+<p>Rendered HTML:</p>
+<p><img src="/img/1_kT_X2-7b33qdukc1s92GCQ.png" alt="rendered html by nova-static"></p>
+<p>The Nova view is also rendered when we disable the JavaScript in the browser. You can use this <a href="https://chrome.google.com/webstore/detail/quick-javascript-switcher/geddoclleiomckbhadiaipdggiiccfje?hl=en">extension</a> in Chrome.</p>
+<p>Diabled JavaScript on browser:</p>
+<p><img src="/img/1_TW1_emP6y4OOQ6X60Ax2fA.png" alt="page without js"></p>
+<p>Another characteristic of Gatsby is the client-side routing. After the page is delivered in the browser the user navigates through the pages without load the page from the static files server.</p>
+<p>Let’s add the <code>Example</code> into the <code>page-2page</code>.</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Link <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"gatsby"</span>
+
+<span class="token keyword">import</span> Layout <span class="token keyword">from</span> <span class="token string">"../components/layout"</span>
+<span class="token keyword">import</span> <span class="token constant">SEO</span> <span class="token keyword">from</span> <span class="token string">"../components/seo"</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Nova <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'nova-react-bridge'</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">SecondPage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Nova</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Example<span class="token punctuation">"</span></span> <span class="token attr-name">data</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'Page 2'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">SEO</span></span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Page two<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Hi <span class="token keyword">from</span> the second page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Welcome to page <span class="token number">2</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Link</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Go back to the homepage<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Link</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Layout</span></span><span class="token punctuation">></span></span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> SecondPage
+</code></pre>
+<p><img src="/img/1_gz3YwZHsOxSPFthKTBKFrg.png" alt="page 2 in browser"></p>
+<p>We can notice the Nova views are mounted after navigating to another page as well. Nova Bridge emits the <code>NovaMount</code> event every time a Nova view needs to be mounted. In this case, every time React mounts a Nova component.</p>
+<h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>Nova services using AWS Lambda are good companions for implementing JAMStack architectures. We can use them to render HTML during build-time and include them into the pages generated by any static site generator (Jekyll, Next, Nuxt, etc).</p>
+<p>Nova Bridge gives us the flexibility to integrate Nova views at run-time. In this demo, we mounted VueJS views but we could delivery independent React views that are developed and deployed from other teams.</p>
+<p>Code: <a href="https://github.com/marconi1992/ara-gatsby-demo">https://github.com/marconi1992/ara-gatsby-demo</a></p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Implementing Microfrontends in GatsbyJS using Ara Framework" data-url="&quot;https://ara-framework.github.io/blog/2019/08/17/gatsby-js" data-related="true" data-via="felipeguizard" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#jamstack-and-aws-lambda">JAMstack and AWS Lambda</a></li><li><a href="#what-do-microfrontends-role-play-here">What do Microfrontends role play here?</a><ul class="toc-headings"><li><a href="#the-scenario">The scenario</a></li></ul></li><li><a href="#microfrontend-nova">Microfrontend (Nova)</a><ul class="toc-headings"><li><a href="#creating-a-microfrontend-nova">Creating a Microfrontend (Nova)</a></li><li><a href="#implementing-hypernova-lambda">Implementing Hypernova Lambda</a></li></ul></li><li><a href="#gatsbyjs-project">GatsbyJS project</a></li><li><a href="#nova-bridge">Nova Bridge</a><ul class="toc-headings"><li><a href="#implementing-nova-bridge">Implementing Nova Bridge</a></li></ul></li><li><a href="#generating-static-website-using-gatsbyjs">Generating static website using GatsbyJS</a></li><li><a href="#include-nova-views-using-nova-static">Include Nova views using Nova Static</a><ul class="toc-headings"><li><a href="#installing-nova-static">Installing Nova Static</a></li><li><a href="#running-nova-static">Running Nova Static</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/ara.png" alt="Ara Framework" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quick-start.html">Getting Started</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/ara-framework" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/AraFramework" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ara-framework">GitHub</a><div class="social"><a href="https://twitter.com/AraFramework" class="twitter-follow-button">Follow @AraFramework</a></div></div></section><section class="copyright">Copyright © 2019 Ara Framework</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

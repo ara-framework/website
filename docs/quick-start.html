@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Quick Start · Ara Framework</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Ara is a framework to easily develop and integrate Micro-frontends using [Airbnb&#x27;s Hypernova](https://github.com/airbnb/hypernova). We use to call **Nova** to each Hypernova service."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Quick Start · Ara Framework"/><meta property="og:type" content="website"/><meta property="og:url" content="&quot;https://ara-framework.github.io/"/><meta property="og:description" content="Ara is a framework to easily develop and integrate Micro-frontends using [Airbnb&#x27;s Hypernova](https://github.com/airbnb/hypernova). We use to call **Nova** to each Hypernova service."/><meta property="og:image" content="&quot;https://ara-framework.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="&quot;https://ara-framework.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css"/><link rel="alternate" type="application/atom+xml" href="&quot;https://ara-framework.github.io/blog/atom.xml" title="Ara Framework Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="&quot;https://ara-framework.github.io/blog/feed.xml" title="Ara Framework Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/ara.png" alt="Ara Framework"/><h2 class="headerTitleWithLogo">Ara Framework</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/quick-start" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Getting Started</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Getting Started</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/quick-start">Quick Start</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Quick Start</h1></header><article><div><span><p>Ara is a framework to easily develop and integrate Micro-frontends using <a href="https://github.com/airbnb/hypernova">Airbnb's Hypernova</a>. We use to call <strong>Nova</strong> to each Hypernova service.</p>
+<h2><a class="anchor" aria-hidden="true" id="installing-ara-cli"></a><a href="#installing-ara-cli" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installing Ara CLI</h2>
+<p>Ara has it's own CLI to perform common tasks such as create Nova services, and more.</p>
+<p>Install Ara CLI:</p>
+<pre><code class="hljs css language-shell">npm i -g ara-cli
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="create-a-nova-service"></a><a href="#create-a-nova-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create a Nova service</h2>
+<p>Ara CLI supports several templates for different JavaScript libraries such as:</p>
+<ul>
+<li>Vue.js</li>
+<li>Angular</li>
+<li>Svelte</li>
+<li>Preact</li>
+<li>Hyperapp</li>
+</ul>
+<p>You can create a new Nova service running the following command:</p>
+<pre><code class="hljs css language-shell">ara new:nova novas/global 
+</code></pre>
+<p>The command by default creates a Nova service using Vue.js but you can use another template using the <code>-t</code> parameter:</p>
+<pre><code class="hljs css language-shell">ara new:nova novas/global -t vue
+</code></pre>
+<p>The service created contains the entry point for the Nova server in <code>src/index.js</code> and the entry point for the browser in <code>src/client.js</code>.</p>
+<h2><a class="anchor" aria-hidden="true" id="run-the-nova-service"></a><a href="#run-the-nova-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run the Nova service.</h2>
+<pre><code class="hljs css language-shell">npm run dev
+</code></pre>
+<p>This command executes the Nova sever on <code>http://localhost:3000</code> and it restarts the server every time the code changes.</p>
+<h2><a class="anchor" aria-hidden="true" id="test-the-nova-service"></a><a href="#test-the-nova-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test the Nova service</h2>
+<p>Once the Nova service is running you can make a <code>POST</code> request to <code>http://localhost:3000</code> using a payload like:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"uuid"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+    <span class="hljs-attr">"data"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Ara Framework"</span>
+    }
+  }
+}
+</code></pre>
+<p>You can request more than one view:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"uuid"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+    <span class="hljs-attr">"data"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Ara Framework"</span>
+    }
+  },
+  <span class="hljs-attr">"uuid-2"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+    <span class="hljs-attr">"data"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Ara Framework 2"</span>
+    }
+  }
+}
+</code></pre>
+<p>The <code>results</code> property in the response contains the <code>html</code> of view rendered by the Nova.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">"results"</span>: {
+    <span class="hljs-attr">"uuid"</span>: {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+      <span class="hljs-attr">"html"</span>: <span class="hljs-string">"&lt;div data-hypernova-key=\"Example\" data-hypernova-id=\"4d9e81bd-6413-4661-ab56-ed5bb4f59cae\"&gt;&lt;h1 data-server-rendered=\"true\"&gt;Ara Framework&lt;/h1&gt;&lt;/div&gt;\n&lt;script type=\"application/json\" data-hypernova-key=\"Example\" data-hypernova-id=\"4d9e81bd-6413-4661-ab56-ed5bb4f59cae\"&gt;&lt;!--{\"title\":\"Ara Framework\"}--&gt;&lt;/script&gt;"</span>,
+      <span class="hljs-attr">"meta"</span>: {},
+      <span class="hljs-attr">"duration"</span>: <span class="hljs-number">1.210146</span>,
+      <span class="hljs-attr">"statusCode"</span>: <span class="hljs-number">200</span>,
+      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
+    },
+    <span class="hljs-attr">"uuid-2"</span>: {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+      <span class="hljs-attr">"html"</span>: <span class="hljs-string">"&lt;div data-hypernova-key=\"Example\" data-hypernova-id=\"dea96da6-ef16-40fd-84ec-85bca4c7bc5d\"&gt;&lt;h1 data-server-rendered=\"true\"&gt;Ara Framework 2&lt;/h1&gt;&lt;/div&gt;\n&lt;script type=\"application/json\" data-hypernova-key=\"Example\" data-hypernova-id=\"dea96da6-ef16-40fd-84ec-85bca4c7bc5d\"&gt;&lt;!--{\"title\":\"Ara Framework 2\"}--&gt;&lt;/script&gt;"</span>,
+      <span class="hljs-attr">"meta"</span>: {},
+      <span class="hljs-attr">"duration"</span>: <span class="hljs-number">0.461026</span>,
+      <span class="hljs-attr">"statusCode"</span>: <span class="hljs-number">200</span>,
+      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
+    }
+  }
+}
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installing-ara-cli">Installing Ara CLI</a></li><li><a href="#create-a-nova-service">Create a Nova service</a></li><li><a href="#run-the-nova-service">Run the Nova service.</a></li><li><a href="#test-the-nova-service">Test the Nova service</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/ara.png" alt="Ara Framework" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/en/quick-start.html">Getting Started</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/ara-framework" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/AraFramework" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/ara-framework">GitHub</a><div class="social"><a href="https://twitter.com/AraFramework" class="twitter-follow-button">Follow @AraFramework</a></div></div></section><section class="copyright">Copyright © 2019 Ara Framework</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
