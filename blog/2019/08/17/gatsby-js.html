@@ -59,7 +59,7 @@
 <p>GatsbyJS enable us to deliver fast and reliable websites that are easy and cheap to host in any cloud provider, for instance, <a href="https://zeit.co/">Zeit</a>, <a href="https://www.netlify.com/">Netlify</a>, and others are services that make easier this duty.</p>
 <h2><a class="anchor" aria-hidden="true" id="jamstack-and-aws-lambda"></a><a href="#jamstack-and-aws-lambda" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>JAMstack and AWS Lambda</h2>
 <p>The main characteristic of JAMstack is that the computing resources are provisioned on-demand only during build-time to generate the static pages, commonly using a serverless CI/CD tool such as CircleCI or Travis CI, which free us of managing dedicated servers.</p>
-<p><img src="/img/0_lbuc243qwiUZl1ax.png" alt="GatsbyJS Diagram"></p>
+<p><img src="/website/img/0_lbuc243qwiUZl1ax.png" alt="GatsbyJS Diagram"></p>
 <p><a href="https://aws.amazon.com/lambda/">AWS Lambda</a> works in a similar way, it runs a function triggered by a webhook, commonly using a lambda integration with other AWS services such as API Gateway, SNS, SQS and more.
 Following this premise, we can deploy a lambda function that generates and stores HTML inside an S3 bucket or why not, a lambda function that renders HTML on demand.</p>
 <h2><a class="anchor" aria-hidden="true" id="what-do-microfrontends-role-play-here"></a><a href="#what-do-microfrontends-role-play-here" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What do Microfrontends role play here?</h2>
@@ -82,7 +82,7 @@ Following this premise, we can deploy a lambda function that generates and store
 <pre><code class="hljs css language-shell">ara new:nova -t vue novas/global
 </code></pre>
 <p>Output:</p>
-<p><img src="/img/1_p1xWHmakQ147zbISb-zZyg.png" alt="new:nova output"></p>
+<p><img src="/website/img/1_p1xWHmakQ147zbISb-zZyg.png" alt="new:nova output"></p>
 <p>The generated project contains a basic setup. We kept it simple to make it. customizable.</p>
 <p><strong>Entry point:</strong>
 The file <code>src/index.js</code> contains the entry point for the Hypernova server. It uses Express by default but we’ll implement AWS Lambda later.</p>
@@ -128,7 +128,7 @@ hypernova({
 </code></pre>
 <p>Once the Hypernova server is running we will see the next message.</p>
 <p>Output:</p>
-<p><img src="/img/1_xUz4UslQbZ40MDwgu7g-kg.png" alt="nova server running output"></p>
+<p><img src="/website/img/1_xUz4UslQbZ40MDwgu7g-kg.png" alt="nova server running output"></p>
 <p>We can test the service making a <code>POST</code> request to <code>http://localhost:3000/batch</code> using the following payload:</p>
 <pre><code class="hljs css language-json">{
   <span class="hljs-attr">"uuid"</span>: {
@@ -190,12 +190,12 @@ hypernova({
 <pre><code class="hljs css language-shell">ara run:lambda
 </code></pre>
 <p>Output:</p>
-<p><img src="/img/1_iZpfY93ddLDP0jRhKXRz9A.png" alt="run:lambda ouput"></p>
+<p><img src="/website/img/1_iZpfY93ddLDP0jRhKXRz9A.png" alt="run:lambda ouput"></p>
 <p>Also, we can serve the client script locally using an S3 local server:</p>
 <pre><code class="hljs css language-shell">ara run:lambda --asset
 </code></pre>
 <p>Output:</p>
-<p><img src="/img/1_fu7nixAMWx9SsT6Md3hBww.png" alt="run:lambda --asset output"></p>
+<p><img src="/website/img/1_fu7nixAMWx9SsT6Md3hBww.png" alt="run:lambda --asset output"></p>
 <p>We can access to the client-side scripts using <a href="http://127.0.0.1:4568/assets/client.js">http://127.0.0.1:4568/assets/client.js</a></p>
 <p>For this demo, we’ll test hypernova lambda locally. I won’t cover the deployment approach, it’s up to you.</p>
 <h2><a class="anchor" aria-hidden="true" id="gatsbyjs-project"></a><a href="#gatsbyjs-project" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>GatsbyJS project</h2>
@@ -211,11 +211,11 @@ hypernova({
 </code></pre>
 <p>This command compiles the assets and runs a development server on <a href="http://localhost:8000/">http://localhost:8000/</a></p>
 <p>Browser:</p>
-<p><img src="/img/1_akLqBO85oIM8mAKJoWxK0Q.png" alt="Gatsby project home page"></p>
+<p><img src="/website/img/1_akLqBO85oIM8mAKJoWxK0Q.png" alt="Gatsby project home page"></p>
 <p>We have our Nova service and Gatsby running, it’s time to integrate our <code>Example</code> view into a Gatsby page.</p>
 <h2><a class="anchor" aria-hidden="true" id="nova-bridge"></a><a href="#nova-bridge" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nova Bridge</h2>
 <p>The Nova bridge enables us to integrate and render Nova views using any view library like React.</p>
-<p><img src="/img/1_1LXUoTxvmX7GNsmLlFv-eA.png" alt="Nova Bridge diagram"></p>
+<p><img src="/website/img/1_1LXUoTxvmX7GNsmLlFv-eA.png" alt="Nova Bridge diagram"></p>
 <ol>
 <li>The Nova Bridge emits a <code>NovaMount</code> event to let now to the Nova service that a view needs to be rendered and mounted.</li>
 <li>The client-side entry point listens to the event and uses the event payload information to render the view.</li>
@@ -318,7 +318,7 @@ hypernova({
 <pre><code class="hljs css language-shell">yarn develop
 </code></pre>
 <p>The <code>Example</code> view shows a heading with the text “Ara Framework”.</p>
-<p><img src="/img/1_LCUNxnpPoyIouqCiQ4shNQ.png" alt="gatsby page with ara"></p>
+<p><img src="/website/img/1_LCUNxnpPoyIouqCiQ4shNQ.png" alt="gatsby page with ara"></p>
 <p>I know the <code>Example</code> view is so simple, let’s make it more interactive.</p>
 <pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
@@ -337,23 +337,23 @@ hypernova({
 }
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </span></code></pre>
-<p><img src="/img/1_QGnGgOp8gq9nX_7BsMlviA.png" alt="gatsby with ara"></p>
+<p><img src="/website/img/1_QGnGgOp8gq9nX_7BsMlviA.png" alt="gatsby with ara"></p>
 <p>We added an input control to change the heading text. So let’s go to generate our static website.</p>
 <h2><a class="anchor" aria-hidden="true" id="generating-static-website-using-gatsbyjs"></a><a href="#generating-static-website-using-gatsbyjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generating static website using GatsbyJS</h2>
 <p>First, we need to build our GatsbyJS project:</p>
 <pre><code class="hljs css language-shell">yarn build
 </code></pre>
-<p><img src="/img/1_Iqzjpl9WxiZEXZ2SJ0Cf1g.png" alt="gatsby build output"></p>
+<p><img src="/website/img/1_Iqzjpl9WxiZEXZ2SJ0Cf1g.png" alt="gatsby build output"></p>
 <p>This command created a folder named <code>public</code> that contains the generated files.</p>
 <p>We can use the GatsbyJS CLI to run a server to consume the static files:</p>
 <pre><code class="hljs css language-shell">yarn serve
 </code></pre>
 <p>This command will run the server on <a href="http://localhost:9000">http://localhost:9000</a>. Looking at the generated HTML we can notice that GatsbyJS only renders the placeholder, it didn’t render the Nova view.</p>
-<p><img src="/img/1_0FmwXJnJcdaDLSxY1ztVng.png" alt="server-side rendered html"></p>
+<p><img src="/website/img/1_0FmwXJnJcdaDLSxY1ztVng.png" alt="server-side rendered html"></p>
 <p>We need to use <a href="https://github.com/ara-framework/nova-static">Nova Static</a> to include the rendered views by the Nova service.</p>
 <h2><a class="anchor" aria-hidden="true" id="include-nova-views-using-nova-static"></a><a href="#include-nova-views-using-nova-static" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Include Nova views using Nova Static</h2>
 <p>Nova Static is a tool part of the Ara Framework that enables us to include Nova views in static HTML files.</p>
-<p><img src="/img/1_6Xfi3GoFGuRcSwSEZaEB_A.png" alt="NOva Static Diagram"></p>
+<p><img src="/website/img/1_6Xfi3GoFGuRcSwSEZaEB_A.png" alt="NOva Static Diagram"></p>
 <ol>
 <li>The static site generator generates static files (HTML, CSS, JS, etc).</li>
 <li>Nova Static reads the HTML files.</li>
@@ -388,15 +388,15 @@ export STATIC_FOLDER=./public
 <pre><code class="hljs css language-shell">nova-static
 </code></pre>
 <p>Output:</p>
-<p><img src="/img/1_wodj2jlGvz6LqIJ5HiCVtw.png" alt="nova-static output"></p>
+<p><img src="/website/img/1_wodj2jlGvz6LqIJ5HiCVtw.png" alt="nova-static output"></p>
 <p>Running the server we can notice the Nova views were included in the static files.</p>
 <pre><code class="hljs css language-shell">yarn serve
 </code></pre>
 <p>Rendered HTML:</p>
-<p><img src="/img/1_kT_X2-7b33qdukc1s92GCQ.png" alt="rendered html by nova-static"></p>
+<p><img src="/website/img/1_kT_X2-7b33qdukc1s92GCQ.png" alt="rendered html by nova-static"></p>
 <p>The Nova view is also rendered when we disable the JavaScript in the browser. You can use this <a href="https://chrome.google.com/webstore/detail/quick-javascript-switcher/geddoclleiomckbhadiaipdggiiccfje?hl=en">extension</a> in Chrome.</p>
 <p>Diabled JavaScript on browser:</p>
-<p><img src="/img/1_TW1_emP6y4OOQ6X60Ax2fA.png" alt="page without js"></p>
+<p><img src="/website/img/1_TW1_emP6y4OOQ6X60Ax2fA.png" alt="page without js"></p>
 <p>Another characteristic of Gatsby is the client-side routing. After the page is delivered in the browser the user navigates through the pages without load the page from the static files server.</p>
 <p>Let’s add the <code>Example</code> into the <code>page-2page</code>.</p>
 <pre><code class="hljs css language-jsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">"react"</span>
@@ -418,7 +418,7 @@ export STATIC_FOLDER=./public
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> SecondPage
 </code></pre>
-<p><img src="/img/1_gz3YwZHsOxSPFthKTBKFrg.png" alt="page 2 in browser"></p>
+<p><img src="/website/img/1_gz3YwZHsOxSPFthKTBKFrg.png" alt="page 2 in browser"></p>
 <p>We can notice the Nova views are mounted after navigating to another page as well. Nova Bridge emits the <code>NovaMount</code> event every time a Nova view needs to be mounted. In this case, every time React mounts a Nova component.</p>
 <h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
 <p>Nova services using AWS Lambda are good companions for implementing JAMStack architectures. We can use them to render HTML during build-time and include them into the pages generated by any static site generator (Jekyll, Next, Nuxt, etc).</p>
