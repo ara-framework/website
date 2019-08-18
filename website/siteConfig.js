@@ -24,7 +24,7 @@ const siteConfig = {
   title: 'Ara Framework', // Title for your website.
   tagline: 'Build Micro-frontends easily using Airbnb Hypernova',
   url: '"https://ara-framework.github.io', // Your website URL
-  baseUrl: '/', // Base URL for your project */
+  baseUrl: '/website/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',

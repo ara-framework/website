@@ -1,0 +1,33 @@
+version: 2
+
+jobs:
+  publish:
+    docker:
+      - image: circle/node:10.15
+    working_directory: ~/website/website
+    steps:
+      - checkout:
+          path: ~/website
+
+      - run:
+          name: Install dependencies
+          command: |
+            yarn install
+
+      - run:
+          name: Publish website
+          command: |
+            GIT_USER=marconi1992 yar publish-gh-pages
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - publish:
+          filters:
+            branches:
+              only: master
+
+
+
+
