@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Publish website
           command: |
-            GIT_USER=marconi1992 yar publish-gh-pages
+            GIT_USER=marconi1992 yarn publish-gh-pages
 
 workflows:
   version: 2
