@@ -3,7 +3,7 @@ version: 2
 jobs:
   publish:
     docker:
-      - image: circle/node:10.15
+      - image: circleci/node:10.15
     working_directory: ~/website/website
     steps:
       - checkout:
