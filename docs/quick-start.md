@@ -4,7 +4,7 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-Ara is a framework to easily develop and integrate Micro-frontends using [Airbnb's Hypernova](https://github.com/airbnb/hypernova). We use to call **Nova** to each Hypernova service.
+Ara is a framework to easily develop and integrate Micro-frontends using [Airbnb's Hypernova](https://github.com/airbnb/hypernova). We call **Nova** to each Hypernova service.
 
 ## Installing Ara CLI
 
@@ -20,11 +20,11 @@ npm i -g ara-cli
 
 Ara CLI supports several templates for different JavaScript libraries such as:
 
-- Vue.js
-- Angular
-- Svelte
-- Preact
-- Hyperapp
+- [Vue.js](https://github.com/ara-framework/create-hypernova-vue)
+- [Angular](https://github.com/ara-framework/create-hypernova-angular)
+- [Svelte](https://github.com/ara-framework/create-hypernova-svelte)
+- [Preact](https://github.com/ara-framework/create-hypernova-preact)
+- [Hyperapp](https://github.com/ara-framework/create-hypernova-hyperapp)
 
 You can create a new Nova service running the following command:
 

@@ -1,5 +1,11 @@
 {
   "docs": {
-    "Getting Started": ["quick-start"]
+    "Getting Started": [
+      "quick-start",
+      "render-in-page"
+    ],
+    "Architecture": [
+      "nova-architecture"
+    ]
   }
 }
