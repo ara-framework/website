@@ -8,7 +8,7 @@ Ara is a framework to easily develop and integrate Micro-frontends using [Airbnb
 
 ## Installing Ara CLI
 
-Ara has it's own CLI to perform common tasks such as create Nova services, and more.
+Ara has it's own [CLI](https://github.com/ara-framework/ara-cli) to perform common tasks such as create Nova services, and more.
 
 Install Ara CLI:
 
