@@ -20,11 +20,12 @@ const users = [
   },
 ];
 
+const baseUrl = '/website/';
 const siteConfig = {
   title: 'Ara Framework', // Title for your website.
   tagline: 'Build Micro-frontends easily using Airbnb Hypernova',
   url: '"https://ara-framework.github.io', // Your website URL
-  baseUrl: '/website/', // Base URL for your project */
+  baseUrl, // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
@@ -80,7 +81,11 @@ const siteConfig = {
   usePrism: ['jsx'],
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://unpkg.com/vhtml@2.1.0/dist/vhtml.js',
+    `${baseUrl}/js/index.js`
+  ],
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',

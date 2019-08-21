@@ -23,10 +23,26 @@
     margin: auto;
 }
 
+.banner {
+    position: fixed;
+    color: #fff;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background: #42a5f5;
+    padding: 12px;
+    border-radius: 4px;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
 @media only screen and (min-width: 1024px) {
+    .banner {
+        width: 400px;
+        left: 8px;
+        bottom: 8px;
+    }
 }
 
 @media only screen and (max-width: 1023px) {

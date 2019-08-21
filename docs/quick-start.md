@@ -20,6 +20,7 @@ npm i -g ara-cli
 
 Ara CLI supports several templates for different JavaScript libraries such as:
 
+- [React](https://github.com/ara-framework/create-hypernova-react)
 - [Vue.js](https://github.com/ara-framework/create-hypernova-vue)
 - [Angular](https://github.com/ara-framework/create-hypernova-angular)
 - [Svelte](https://github.com/ara-framework/create-hypernova-svelte)
