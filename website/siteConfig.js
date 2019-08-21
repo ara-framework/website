@@ -88,8 +88,8 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
-  twitterImage: 'img/undraw_tweetstorm.svg',
+  ogImage: 'img/ara.svg',
+  twitterImage: 'img/ara.svg',
   twitter: true,
   twitterUsername: 'AraFramework',
 
