@@ -4,7 +4,7 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-Ara is a framework to easily develop and integrate Micro-frontends using [Airbnb's Hypernova](https://github.com/airbnb/hypernova). We call **Nova** to each Hypernova service.
+Ara is a framework to develop and integrate Micro-frontends easily using [Airbnb's Hypernova](https://github.com/airbnb/hypernova). We call **Nova** to each Hypernova service.
 
 ## Installing Ara CLI
 

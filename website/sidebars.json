@@ -2,7 +2,7 @@
   "docs": {
     "Getting Started": [
       "quick-start",
-      "render-in-page"
+      "render-on-page"
     ],
     "Architecture": [
       "nova-architecture"
