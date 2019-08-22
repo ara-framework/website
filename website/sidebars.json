@@ -9,7 +9,8 @@
     ],
     "Nova Bindings": [
       "nova-react",
-      "nova-vue"
+      "nova-vue",
+      "nova-angular"
     ]
   }
 }
