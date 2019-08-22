@@ -4,7 +4,7 @@ title: Nova Angular
 sidebar_label: Angular
 ---
 
-[Angular]https://angular.io/) bindings for [Hypernova](https://github.com/airbnb/hypernova).
+[Angular](https://angular.io/) bindings for [Hypernova](https://github.com/airbnb/hypernova).
 ## Install package
 
 ```shell
