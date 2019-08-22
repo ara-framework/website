@@ -41,6 +41,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'quick-start', label: 'Docs'},
     {blog: true, label: 'Blog'},
+    { href: 'https://github.com/ara-framework', label: 'GitHub' },
   ],
 
   // If you have users set above, you add it here:
