@@ -8,7 +8,8 @@
       "nova-architecture"
     ],
     "Nova Bindings": [
-      "nova-react"
+      "nova-react",
+      "nova-vue"
     ]
   }
 }
