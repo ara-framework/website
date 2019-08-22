@@ -114,7 +114,8 @@ const siteConfig = {
   scrollToTop: true,
   gaTrackingId: 'UA-146072659-1',
 
-  editUrl: 'https://github.com/ara-framework/website/edit/master/docs/' 
+  editUrl: 'https://github.com/ara-framework/website/edit/master/docs/',
+  docsSideNavCollapsible: true 
 };
 
 module.exports = siteConfig;

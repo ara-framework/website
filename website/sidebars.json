@@ -6,6 +6,9 @@
     ],
     "Architecture": [
       "nova-architecture"
+    ],
+    "Nova Bindings": [
+      "nova-react"
     ]
   }
 }
