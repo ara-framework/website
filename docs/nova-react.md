@@ -4,7 +4,7 @@ title: Nova React
 sidebar_label: React
 ---
 
-[React](https://reactjs.org/) bindings for [Hypernova](https://github.com/airbnb/hypernova). This package extends [hypernova/react](https://github.com/airbnb/hypernova-react)
+[React](https://reactjs.org/) bindings for [Hypernova](https://github.com/airbnb/hypernova). This package extends [hypernova-react](https://github.com/airbnb/hypernova-react)
 
 ## Install package
 
@@ -13,7 +13,7 @@ npm install --save nova-react
 ```
 
 ## Usage
-The bindings for hypernova enables us render the Nova views on the server and hydrate them on the browser to make them interactive. It's also know as Univeral Rendering.  
+The bindings for hypernova render the Nova views on the server and hydrate them on the browser to make them interactive. It's also know as Univeral Rendering.  
 
 ### Server Side
 
