@@ -134,7 +134,7 @@ Once the Nova service is running you can make a `POST` request to http://localho
 }
 ```
 
-The `results` property in the response contains the `html` of view rendered by the Nova.
+The `results` property in the response contains the `html` of the view rendered by the Nova service.
 
 Example:
 
@@ -158,7 +158,7 @@ Example:
 
 ### Update the Example view
 
-The `Example` view is rendering only a simple heading. We can make it interactive adding a input that changes the heading text.
+The `Example` view is rendering only a simple heading. We can make it interactive adding an input element that changes the heading text.
 
 Replace the `nova/src/components/Example.vue` with the following code:
 
@@ -237,11 +237,11 @@ Open the page on http://localhost:8080 and notice the Nova view is rendered.
 
 ![flask-example-vue-render](/website/img/blog/flask-example-vue-render.png)
 
-The rendered view is not interactive yet, if we type something in the input the heading text is not updated. It's happening because we're not loading the client script.
+The rendered view is not interactive yet, if we type something in the input element the heading text is not updated. It's happening because we're not loading the client script.
 
 ## Hydrate Nova views on the browser
 
-Hydration is the process of mounting a view component on the browser using the state used whe it was rendered on the server.
+Hydration is the process of mounting a view component on the browser using the state used when it was rendered on the server.
 
 In order to hydrate the views we need to load the `client.js` script on the browser.
 
@@ -269,4 +269,4 @@ Finally, the Nova view rendered on the server is interactive and dynamic on the 
 
 ## Conclusion
 
-Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a website using non Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) and you don't need to migrate everything from scratch. Nova Proxy can help you to start migrating the views to a JavaScript view library (React, Vue.js) and use them on the current site.
+Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a web application using non Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) then Nova Proxy can help you to gradually migrate its views to a JavaScript view library (React, Vue.js) in a short period of time.
