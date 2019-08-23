@@ -47,11 +47,11 @@ The service created contains the entry point for the Nova server in `src/index.j
 npm run dev
 ```
 
-This command executes the Nova sever on `http://localhost:3000` and it restarts the server every time the code changes.
+This command executes the Nova sever on http://localhost:3000 and it restarts the server every time the code changes.
 
 ## Test the Nova service
 
-Once the Nova service is running you can make a `POST` request to `http://localhost:3000` using a payload like:
+Once the Nova service is running you can make a `POST` request to http://localhost:3000/batch using a payload like:
 
 ```json
 {
