@@ -7,6 +7,9 @@
     "Architecture": [
       "nova-architecture"
     ],
+    "Nova Directives": [
+      "hypernova-jinja2-directive"
+    ],
     "Nova Bindings": [
       "nova-react",
       "nova-vue",
