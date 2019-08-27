@@ -113,7 +113,7 @@ const siteConfig = {
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
   scrollToTop: true,
-  gaTrackingId: 'UA-146072659-1',
+  gaTrackingId: process.env.NODE_ENV === 'development' ? null : 'UA-146072659-1',
 
   editUrl: 'https://github.com/ara-framework/website/edit/master/docs/',
   docsSideNavCollapsible: true 

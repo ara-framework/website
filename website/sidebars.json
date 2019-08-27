@@ -10,6 +10,10 @@
     "Nova Directives": [
       "hypernova-jinja2-directive"
     ],
+    "Nova Bridge": [
+      "nova-bridge",
+      "nova-react-bridge"
+    ],
     "Nova Bindings": [
       "nova-react",
       "nova-vue",
