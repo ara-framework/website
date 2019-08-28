@@ -4,7 +4,7 @@
         <title>Ara Framework Blog</title>
         <link>&quot;https://ara-framework.github.io/website/blog</link>
         <description>The best place to stay up-to-date with the latest Ara Framework news and events.</description>
-        <lastBuildDate>Thu, 22 Aug 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 27 Aug 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>&quot;https://ara-framework.github.io/website/blog</link>
         </image>
         <copyright>Copyright © 2019 Ara Framework</copyright>
+        <item>
+            <title><![CDATA[Implementing Microfrontends in Nuxt.js using Svelte and Ara Framework]]></title>
+            <link>&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html</link>
+            <guid>&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html</guid>
+            <pubDate>Tue, 27 Aug 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/website/img/blog/nuxt-svelte.png" alt="Nuxt + Svelte"></p>
+<p><a href="https://nuxtjs.org/">Nuxt.js</a> is the most popular framework to easily develop Universal Applications using Vue.js. It also supports static websites, single-page, mobile, and desktop applications.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Universal Rendering in Flask using Vue.js and Ara Framework]]></title>
             <link>&quot;https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html</link>
