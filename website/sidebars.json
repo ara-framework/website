@@ -12,7 +12,8 @@
     ],
     "Nova Bridge": [
       "nova-bridge",
-      "nova-react-bridge"
+      "nova-react-bridge",
+      "nova-vue-bridge"
     ],
     "Nova Bindings": [
       "nova-react",

@@ -6,7 +6,7 @@ sidebar_label: React
 
 ## Install
 
-```
+```shell
 npm install nova-react-bridge
 ```
 
