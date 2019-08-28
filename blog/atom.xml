@@ -15,6 +15,7 @@
         </link>
         <updated>2019-08-27T06:00:00Z</updated>
         <summary type="html"><![CDATA[<p><img src="/website/img/blog/nuxt-svelte.png" alt="Nuxt + Svelte"></p>
+<p>Demo code <a href="https://github.com/marconi1992/ara-nuxtjs-demo">here</a></p>
 <p><a href="https://nuxtjs.org/">Nuxt.js</a> is the most popular framework to easily develop Universal Applications using Vue.js. It also supports static websites, single-page, mobile, and desktop applications.</p>
 ]]></summary>
         <author>

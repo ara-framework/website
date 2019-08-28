@@ -19,6 +19,7 @@
             <guid>&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html</guid>
             <pubDate>Tue, 27 Aug 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><img src="/website/img/blog/nuxt-svelte.png" alt="Nuxt + Svelte"></p>
+<p>Demo code <a href="https://github.com/marconi1992/ara-nuxtjs-demo">here</a></p>
 <p><a href="https://nuxtjs.org/">Nuxt.js</a> is the most popular framework to easily develop Universal Applications using Vue.js. It also supports static websites, single-page, mobile, and desktop applications.</p>
 ]]></description>
         </item>
