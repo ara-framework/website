@@ -20,7 +20,7 @@
             <pubDate>Wed, 28 Aug 2019 06:00:00 GMT</pubDate>
             <description><![CDATA[<p><img src="/website/img/blog/laravel-vue.png" alt="Laravel + Vue.js"></p>
 <p>Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components built with a library such as React, Vue.js, Angular, etc.</p>
-<p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a> and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non JavaScript frameworks like Laravel?</p>
+<p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a>, and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non-JavaScript frameworks like Laravel?</p>
 ]]></description>
         </item>
         <item>
