@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Universal Rendering in Laravel using Vue.js and Ara Framework · Ara Framework</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components using a library such as React, Vue.js, Angular, etc. "/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Universal Rendering in Laravel using Vue.js and Ara Framework · Ara Framework"/><meta property="og:type" content="website"/><meta property="og:url" content="&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel"/><meta property="og:description" content="Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components using a library such as React, Vue.js, Angular, etc. "/><meta property="og:image" content="&quot;https://ara-framework.github.io/website/img/ara.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="&quot;https://ara-framework.github.io/website/img/ara.svg"/><link rel="shortcut icon" href="/website/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css"/><link rel="alternate" type="application/atom+xml" href="&quot;https://ara-framework.github.io/website/blog/atom.xml" title="Ara Framework Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="&quot;https://ara-framework.github.io/website/blog/feed.xml" title="Ara Framework Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-146072659-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://unpkg.com/vhtml@2.1.0/dist/vhtml.js"></script><script type="text/javascript" src="/website//js/index.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/website/js/scrollSpy.js"></script><link rel="stylesheet" href="/website/css/prism.css"/><link rel="stylesheet" href="/website/css/main.css"/><script src="/website/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/website/"><img class="logo" src="/website/img/ara.png" alt="Ara Framework"/><h2 class="headerTitleWithLogo">Ara Framework</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/website/docs/quick-start" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/website/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/ara-framework" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/website/blog/2019/08/28/universal-rendering-in-laravel">Universal Rendering in Laravel using Vue.js and Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/27/nuxt-js">Implementing Microfrontends in Nuxt.js using Svelte and Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/22/universal-rendering-in-flask">Universal Rendering in Flask using Vue.js and Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/17/gatsby-js">Implementing Microfrontends in GatsbyJS using Ara Framework</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/website/blog/2019/08/28/universal-rendering-in-laravel">Universal Rendering in Laravel using Vue.js and Ara Framework</a></h1><p class="post-meta">August 28, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/felipeguizard" target="_blank" rel="noreferrer noopener">Felipe Guizar Diaz</a></p><div class="authorPhoto"><a href="https://twitter.com/felipeguizard" target="_blank" rel="noreferrer noopener"><img src="https://www.gravatar.com/avatar/5c0f68aec4986617a543a5699032075e" alt="Felipe Guizar Diaz"/></a></div></div></header><div><span><p><img src="/website/img/blog/laravel-vue.png" alt="Laravel + Vue.js"></p>
+<p>Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components using a library such as React, Vue.js, Angular, etc.</p>
+<p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a> and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non JavaScript frameworks like Laravel?</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="setup-laravel"></a><a href="#setup-laravel" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Laravel</h2>
+<p>Download Laravel installer using Composer.</p>
+<pre><code class="hljs css language-shell">composer global require laravel/installer
+</code></pre>
+<p>Create a folder named <code>ara-laravel</code> and run the following command inside the folder to create a Laravel project.</p>
+<pre><code class="hljs css language-shell">composer create-project --prefer-dist laravel/laravel laravel-site
+</code></pre>
+<p>Once the project is created run the Laravel application on <a href="http://localhost:8000/">http://localhost:8000/</a>.</p>
+<pre><code class="hljs css language-shell">php artisan serve
+</code></pre>
+<p>Browser:</p>
+<p><img src="/website/img/blog/laravel-main-page.png" alt="Laravel main page"></p>
+<h2><a class="anchor" aria-hidden="true" id="set-up-the-nova-service"></a><a href="#set-up-the-nova-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set up the Nova service</h2>
+<p>We'll create a Nova service using Vue.js.</p>
+<p>Install <a href="https://github.com/ara-framework/ara-cli">Ara CLI</a>:</p>
+<pre><code class="hljs css language-shell">npm i -g ara-cli
+</code></pre>
+<p>Create Nova service:</p>
+<pre><code class="hljs css language-shell">ara new:nova -t vue nova
+</code></pre>
+<p>Go to the Nova service folder:</p>
+<pre><code class="hljs css language-shell">cd nova
+</code></pre>
+<p>Run Nova service:</p>
+<pre><code class="hljs css language-shell">yarn dev
+</code></pre>
+<p>The Nova service runs on <a href="http://localhost:3000">http://localhost:3000</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="test-the-nova-service"></a><a href="#test-the-nova-service" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test the Nova Service.</h3>
+<p>Once the Nova service is running you can make a <code>POST</code> request to <a href="http://localhost:3000/batch">http://localhost:3000/batch</a> using a payload like:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"uuid"</span>: {
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+    <span class="hljs-attr">"data"</span>: {
+      <span class="hljs-attr">"title"</span>: <span class="hljs-string">"Ara Framework"</span>
+    }
+  }
+}
+</code></pre>
+<p>The <code>results</code> property in the response contains the <code>html</code> of the view rendered by the Nova service.</p>
+<p>Example:</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>,
+  <span class="hljs-attr">"results"</span>: {
+    <span class="hljs-attr">"uuid"</span>: {
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Example"</span>,
+      <span class="hljs-attr">"html"</span>: <span class="hljs-string">"&lt;div data-hypernova-key=\"Example\" data-hypernova-id=\"4d9e81bd-6413-4661-ab56-ed5bb4f59cae\"&gt;&lt;h1 data-server-rendered=\"true\"&gt;Ara Framework&lt;/h1&gt;&lt;/div&gt;\n&lt;script type=\"application/json\" data-hypernova-key=\"Example\" data-hypernova-id=\"4d9e81bd-6413-4661-ab56-ed5bb4f59cae\"&gt;&lt;!--{\"title\":\"Ara Framework\"}--&gt;&lt;/script&gt;"</span>,
+      <span class="hljs-attr">"meta"</span>: {},
+      <span class="hljs-attr">"duration"</span>: <span class="hljs-number">1.210146</span>,
+      <span class="hljs-attr">"statusCode"</span>: <span class="hljs-number">200</span>,
+      <span class="hljs-attr">"success"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"error"</span>: <span class="hljs-literal">null</span>
+    }
+  }
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="setup-nova-directive-in-laravel-blade"></a><a href="#setup-nova-directive-in-laravel-blade" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Nova Directive in Laravel Blade</h2>
+<p>Install Nova Direcitive for Laravel Blade using Composer inside the <code>laravel-site</code> folder.</p>
+<pre><code class="hljs css language-shell">composer require marconi1992/hypernova-blade-directive
+</code></pre>
+<p>Add <code>NovaServiceProvider</code> in application config <code>config/app.php</code></p>
+<pre><code class="hljs css language-php">
+<span class="hljs-keyword">return</span> [
+    ...
+    <span class="hljs-string">'providers'</span>: [
+        ...
+        Illuminate\View\ViewServiceProvider::class,
+        <span class="hljs-comment">/*
+         * Package Service Providers...
+         */</span>
+        Marconi\Nova\NovaServiceProvider::class,
+        <span class="hljs-comment">/*
+         * Application Service Providers...
+         */</span>
+        App\Providers\AppServiceProvider::class,
+        ...
+    ]
+    ...
+]
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="use-nova-directive-in-a-laravel-view"></a><a href="#use-nova-directive-in-a-laravel-view" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Use Nova Directive in a Laravel view</h2>
+<p>Add the <code>Example</code> view in welcome page.</p>
+<p><code>resources/views/welcome.blade.php</code></p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        ...
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"content"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"title m-b-md"</span>&gt;</span>
+                Laravel
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- Nova Directive starts --&gt;</span>
+            @hypernova('Example', [ 'title' =&gt; 'Ara Framework'])
+            <span class="hljs-comment">&lt;!-- Nova Directive ends --&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"links"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://laravel.com/docs"</span>&gt;</span>Docs<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://laracasts.com"</span>&gt;</span>Laracasts<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://laravel-news.com"</span>&gt;</span>News<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://blog.laravel.com"</span>&gt;</span>Blog<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://nova.laravel.com"</span>&gt;</span>Nova<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://forge.laravel.com"</span>&gt;</span>Forge<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://github.com/laravel/laravel"</span>&gt;</span>GitHub<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        ...
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="server-side-rendering"></a><a href="#server-side-rendering" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Server-side rendering</h2>
+<p>The Nova View is not rendered yet, we need to implement <a href="https://github.com/ara-framework/nova-proxy">Nova Proxy</a> in order to server-side render and include the Nova views.</p>
+<p>The Nova Direvitve renders a placeholder that contains the necessary information to enable Nova Proxy communicate with the Nova service and include the Nova view.</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-hypernova-key</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">data-hypernova-id</span>=<span class="hljs-string">"d198fa6c-c9ec-11e9-a223-8c85903a4c93"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"application/json"</span> <span class="hljs-attr">data-hypernova-key</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">data-hypernova-id</span>=<span class="hljs-string">"d198fa6c-c9ec-11e9-a223-8c85903a4c93"</span>&gt;</span><span class="handlebars"><span class="xml"><span class="hljs-comment">&lt;!--{"title":"Ara Framework"}--&gt;</span></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="nova-proxy"></a><a href="#nova-proxy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Nova Proxy</h3>
+<p>Nova proxy is a service to implement Unversal Rendering with any view library (React, Vue.js, etc) on any web platform (Laravel, Flask, etc). For example, in this demo we'll render a view using Vue.js into a web application built with Laravel.</p>
+<p>How it works:</p>
+<p><img src="https://cdn-images-1.medium.com/max/2400/1*0_KCs-IFVCIN8J5RwP7uFg.png" alt=""></p>
+<ol>
+<li><p>A user requests a page to the <strong>Nova Proxy</strong>.</p></li>
+<li><p>The <strong>Nova Proxy</strong> passes the request to the website server.</p></li>
+<li><p>The website uses a <strong>Nova Directive</strong> to render the placeholders where the Nova views should be included.</p></li>
+<li><p>The website sends back the HTML generated to the <strong>Nova Proxy</strong>.</p></li>
+<li><p>The <strong>Nova Proxy</strong> include the Nova views on the placeholders and sends back the HTML to the browser.</p></li>
+</ol>
+<p>Finally, on the browser, JavaScript is used to progressively enhance the application and make it interactive. Read more <a href="/website/docs/nova-architecture">here</a> about the Nova Architecture.</p>
+<h3><a class="anchor" aria-hidden="true" id="setup-nova-proxy"></a><a href="#setup-nova-proxy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Setup Nova Proxy</h3>
+<p>Create a configuration file for Nova Proxy in the root folder:</p>
+<pre><code class="hljs">touch nova-proxy<span class="hljs-selector-class">.json</span>
+</code></pre>
+<p>Add the following configuration in <code>nova-proxy.json</code> file to proxy the incoming requests to the Laravel web server.</p>
+<pre><code class="hljs css language-json">{
+  <span class="hljs-attr">"locations"</span>: [
+    {
+      <span class="hljs-attr">"path"</span>: <span class="hljs-string">"/"</span>,
+      <span class="hljs-attr">"host"</span>: <span class="hljs-string">"http://localhost:8000"</span>,
+      <span class="hljs-attr">"modifyResponse"</span>: <span class="hljs-literal">true</span>
+    }
+  ]
+}
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="run-nova-proxy"></a><a href="#run-nova-proxy" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Run Nova Proxy</h3>
+<p>Before running the command we need to set the <code>HYPERNOVA_BATCH</code> variable using the Nova service endpoint.</p>
+<pre><code class="hljs css language-shell">export HYPERNOVA_BATCH=http://localhost:3000/batch
+</code></pre>
+<p>You need to run the following command where the <code>noxa-proxy.json</code> file was created or pass the <code>--config</code> parameter with the configuration file path.</p>
+<pre><code class="hljs">ara <span class="hljs-built_in">run</span>:proxy <span class="hljs-comment">--config ./nova-proxy.json</span>
+</code></pre>
+<p>The command runs Nova Proxy on <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<p>Now, see how the Nova view is displayed, it's because Nova Proxy include the Nova view in the page coming from the Laravel application.</p>
+<p>Browser:</p>
+<p><img src="/website/img/blog/laravel-ssr-nova-view.png" alt="Nova view rendered by Nova Proxy"></p>
+<h2><a class="anchor" aria-hidden="true" id="client-side-rendering"></a><a href="#client-side-rendering" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Client-side rendering</h2>
+<p>The <code>Example</code> view is rendering only a simple heading. We can make it interactive adding an input element that changes the heading text.</p>
+<p>Replace the <code>nova/src/components/Example.vue</code> with the following code:</p>
+<pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span></span><span class="hljs-template-variable">{{title}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"title"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'title'</span>]
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+<p>Now, the Nova view displays an input element but the heading text doesn't change when we type something. It's because we need to add the client-side script.</p>
+<h2><a class="anchor" aria-hidden="true" id="hydrate-nova-views-on-the-browser"></a><a href="#hydrate-nova-views-on-the-browser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hydrate Nova views on the browser</h2>
+<p>Hydration is the process of mounting a view component on the browser using the state used when it was rendered on the server.</p>
+<p>In order to hydrate the views we need to load the <code>client.js</code> script on the browser.</p>
+<p>Update the <code>welcome.blade.php</code> file in the Laravel application:</p>
+<pre><code class="hljs css language-html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    ....
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    ....
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://localhost:3000/public/client.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p><img src="/website/img/blog/laravel-interactive-view.gif" alt="Nova view interactive"></p>
+<h2><a class="anchor" aria-hidden="true" id="conclusion"></a><a href="#conclusion" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Conclusion</h2>
+<p>Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a web application using non Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) then Nova Proxy can help you to gradually migrate its views to a JavaScript view library (React, Vue.js) in a short period of time.</p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Universal Rendering in Laravel using Vue.js and Ara Framework" data-url="&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel" data-related="true" data-via="felipeguizard" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/website/blog">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#setup-laravel">Setup Laravel</a></li><li><a href="#set-up-the-nova-service">Set up the Nova service</a><ul class="toc-headings"><li><a href="#test-the-nova-service">Test the Nova Service.</a></li></ul></li><li><a href="#setup-nova-directive-in-laravel-blade">Setup Nova Directive in Laravel Blade</a></li><li><a href="#use-nova-directive-in-a-laravel-view">Use Nova Directive in a Laravel view</a></li><li><a href="#server-side-rendering">Server-side rendering</a><ul class="toc-headings"><li><a href="#nova-proxy">Nova Proxy</a></li><li><a href="#setup-nova-proxy">Setup Nova Proxy</a></li><li><a href="#run-nova-proxy">Run Nova Proxy</a></li></ul></li><li><a href="#client-side-rendering">Client-side rendering</a></li><li><a href="#hydrate-nova-views-on-the-browser">Hydrate Nova views on the browser</a></li><li><a href="#conclusion">Conclusion</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/website/" class="nav-home"><img src="/website/img/ara.png" alt="Ara Framework"/></a><div><h5>Docs</h5><a href="/website/docs/en/quick-start.html">Getting Started</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/ara-framework" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/AraFramework" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/website/blog">Blog</a><a href="https://github.com/ara-framework">GitHub</a><div class="social"><a href="https://twitter.com/AraFramework" class="twitter-follow-button">Follow @AraFramework</a></div></div></section><section class="copyright">Copyright © 2019 Ara Framework</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

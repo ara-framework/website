@@ -2,12 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>&quot;https://ara-framework.github.io/website/blog</id>
     <title>Ara Framework Blog</title>
-    <updated>2019-08-27T06:00:00Z</updated>
+    <updated>2019-08-28T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="&quot;https://ara-framework.github.io/website/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ara Framework news and events.</subtitle>
     <logo>&quot;https://ara-framework.github.io/website/img/ara.png</logo>
     <rights>Copyright © 2019 Ara Framework</rights>
+    <entry>
+        <title type="html"><![CDATA[Universal Rendering in Laravel using Vue.js and Ara Framework]]></title>
+        <id>&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html</id>
+        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html">
+        </link>
+        <updated>2019-08-28T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/website/img/blog/laravel-vue.png" alt="Laravel + Vue.js"></p>
+<p>Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components using a library such as React, Vue.js, Angular, etc.</p>
+<p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a> and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non JavaScript frameworks like Laravel?</p>
+]]></summary>
+        <author>
+            <name>Felipe Guizar Diaz</name>
+            <uri>https://twitter.com/felipeguizard</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Implementing Microfrontends in Nuxt.js using Svelte and Ara Framework]]></title>
         <id>&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html</id>
