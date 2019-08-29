@@ -10,7 +10,7 @@ authorTwitter: felipeguizard
 
 Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components built with a library such as React, Vue.js, Angular, etc. 
 
-Nowadays, JavaScript frameworks such as [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxtjs.org/) and [NgUniversal](https://github.com/angular/universal) make this duty easier. However, how can we achieve it on non JavaScript frameworks like Laravel?
+Nowadays, JavaScript frameworks such as [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxtjs.org/), and [NgUniversal](https://github.com/angular/universal) make this duty easier. However, how can we achieve it on non-JavaScript frameworks like Laravel?
 
 <!--truncate-->
 
@@ -48,7 +48,7 @@ Install [Ara CLI](https://github.com/ara-framework/ara-cli):
 npm i -g ara-cli
 ```
 
-Create Nova service:
+Create the Nova service:
 
 ```shell
 ara new:nova -t vue nova
@@ -107,7 +107,7 @@ Example:
 
 ## Setup Nova Directive in Laravel Blade
 
-Install Nova Direcitive for Laravel Blade using Composer inside the `laravel-site` folder.
+Install Nova Directive for Laravel Blade using Composer inside the `laravel-site` folder.
 
 ```shell
 composer require marconi1992/hypernova-blade-directive
@@ -139,7 +139,7 @@ return [
 
 ## Use Nova Directive in a Laravel view
 
-Add the `Example` view in welcome page.
+Add the `Example` view on the welcome page.
 
 `resources/views/welcome.blade.php`
 
@@ -174,7 +174,7 @@ Add the `Example` view in welcome page.
 
 The Nova View is not rendered yet, we need to implement [Nova Proxy](https://github.com/ara-framework/nova-proxy) in order to server-side render and include the Nova views.
 
-The Nova Direvitve renders a placeholder that contains the necessary information to enable Nova Proxy communicate with the Nova service and include the Nova view.
+The Nova Direvitve renders a placeholder that contains the necessary information to enable Nova Proxy to communicate with the Nova service and include the Nova view.
 
 ```html
 <div data-hypernova-key="Example" data-hypernova-id="d198fa6c-c9ec-11e9-a223-8c85903a4c93"></div>
@@ -183,7 +183,7 @@ The Nova Direvitve renders a placeholder that contains the necessary information
 
 ### Nova Proxy
 
-Nova proxy is a service to implement Unversal Rendering with any view library (React, Vue.js, etc) on any web platform (Laravel, Flask, etc). For example, in this demo we'll render a view using Vue.js into a web application built with Laravel.
+Nova proxy is a service to implement Universal Rendering with any view library (React, Vue.js, etc) on any web platform (Laravel, Flask, etc). For example, in this demo, we'll render a view using Vue.js into a web application built with Laravel.
 
 How it works:
 
@@ -196,7 +196,7 @@ How it works:
 
 4. The website sends back the HTML generated to the **Nova Proxy**.
 
-5. The **Nova Proxy** include the Nova views on the placeholders and sends back the HTML to the browser.
+5. The **Nova Proxy** includes the Nova views on the placeholders and sends back the HTML to the browser.
 
 Finally, on the browser, JavaScript is used to progressively enhance the application and make it interactive. Read more [here](/website/docs/nova-architecture) about the Nova Architecture.
 
@@ -238,7 +238,7 @@ ara run:proxy --config ./nova-proxy.json
 
 The command runs Nova Proxy on http://localhost:8080.
 
-Now, see how the Nova view is displayed, it's because Nova Proxy include the Nova view in the page coming from the Laravel application.
+Now, see how the Nova view is displayed, it's because Nova Proxy includes the Nova view in the page coming from the Laravel application.
 
 Browser:
 
@@ -295,4 +295,4 @@ Update the `welcome.blade.php` file in the Laravel application:
 
 ## Conclusion
 
-Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a web application using non Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) then Nova Proxy can help you to gradually migrate its views to a JavaScript view library (React, Vue.js) in a short period of time.
+Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a web application using non-Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) then Nova Proxy can help you to gradually migrate its views to a JavaScript view library (React, Vue.js) in a short period of time.
