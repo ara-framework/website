@@ -38,8 +38,8 @@
             <link>&quot;https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html</link>
             <guid>&quot;https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html</guid>
             <pubDate>Thu, 22 Aug 2019 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>Universal Rendering consists in server-side render pages and make them interactive on the browser using the same view components built with React, Vue.js, Angular, etc.</p>
-<p>Nowdays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a> and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non JavaScript frameworks like Flask?</p>
+            <description><![CDATA[<p>Universal Rendering consists in server-side rendered pages and making them interactive on the browser, using the same view components built with React, Vue.js, Angular, etc.</p>
+<p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a> and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non JavaScript frameworks like Flask?</p>
 ]]></description>
         </item>
         <item>
