@@ -6,9 +6,9 @@ authorImageURL: https://www.gravatar.com/avatar/5c0f68aec4986617a543a5699032075e
 authorTwitter: felipeguizard
 ---
 
-Universal Rendering consists in server-side render pages and make them interactive on the browser using the same view components built with React, Vue.js, Angular, etc. 
+Universal Rendering consists in server-side rendered pages and making them interactive on the browser, using the same view components built with React, Vue.js, Angular, etc. 
 
-Nowdays, JavaScript frameworks such as [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxtjs.org/) and [NgUniversal](https://github.com/angular/universal) make this duty easier. However, how can we achieve it on non JavaScript frameworks like Flask?
+Nowadays, JavaScript frameworks such as [Next.js](https://nextjs.org/), [Nuxt.js](https://nuxtjs.org/) and [NgUniversal](https://github.com/angular/universal) make this duty easier. However, how can we achieve it on non JavaScript frameworks like Flask?
 
 <!--truncate-->
 
@@ -19,20 +19,20 @@ Nova proxy is a service to implement Unversal Rendering with any view library (R
 How it works:
 
 ![](https://cdn-images-1.medium.com/max/2400/1*0_KCs-IFVCIN8J5RwP7uFg.png)
-1. A user requests a page to **Nova Proxy**.
+1. A user requests a page to the **Nova Proxy**.
 
-2. **Nova Proxy** passes the request to the website server.
+2. The **Nova Proxy** passes the request to the website server.
 
-3. The website uses a **Nova Directive** to render the placeholders where the Nova views should be included.
+3. The website uses a the **Nova Directive** to render the placeholders where the Nova views should be included.
 
-4. The website sends back the HTML generated to **Nova Proxy**.
+4. The website sends back the HTML generated to the **Nova Proxy**.
 
-5. **Nova Proxy** include the Nova views on the placeholders and sends back the HTML to the browser.
+5. The **Nova Proxy** includes the Nova views in the placeholders and sends back the HTML to the browser.
 
 Finally, on the browser, JavaScript is used to progressively enhance the application and make it interactive. Read more [here](/website/docs/nova-architecture) about the Nova Architecture.
 
 
-## Set Up Flask App
+## Set Up The Flask App
 
 We'll use [SAO](https://github.com/saojs/sao) to generate the base Flask application.
 
@@ -43,13 +43,13 @@ npm i -g sao
 ```
 
 
-Create Flask app:
+Create the Flask app:
 
 ```shell
 sao marconi1992/create-flask-app ara-flask
 ```
 
-### Set Up Nova Directive
+### Set Up The Nova Directive
 
 Notice the `requirements.txt` file contains a package named [hypernova_jinja2_directive](https://github.com/ara-framework/hypernova-jinja2-directive). It's used to render the Nova directives using the template engine for Flask (Jinja2).
 
@@ -201,7 +201,7 @@ Add the following configuration in `nova-proxy.json` file to proxy the incoming 
 
 ### Run Nova Proxy
 
-Before to run the command we need to set the `HYPERNOVA_BATCH` variable using the Nova service endpoint.
+Before running the command we need to set the `HYPERNOVA_BATCH` variable using the Nova service endpoint.
 
 ```shell
 export HYPERNOVA_BATCH=http://localhost:3000/batch
@@ -231,13 +231,13 @@ Use the Nova directive in a Jinja2 template page:
 {% endblock %}
 ```
 
-The `nova` helper requires the `name` of the view, and the `data` necessary to render the it.
+The `nova` helper requires the `name` of the view, and the `data` necessary to render it.
 
-Open the page on http://localhost:8080 and notice the Nova view is rendered.
+Open the page on http://localhost:8080 and see how the Nova view is rendered.
 
 ![flask-example-vue-render](/website/img/blog/flask-example-vue-render.png)
 
-The rendered view is not interactive yet, if we type something in the input element the heading text is not updated. It's happening because we're not loading the client script.
+The rendered view is not interactive yet, if we type something in the input element the heading text is not updated. This is happening because we're not loading the client script.
 
 ## Hydrate Nova views on the browser
 
@@ -262,11 +262,11 @@ Update the `base.html` file in the Flask app:
 </html>
 ```
 
-Finally, the Nova view rendered on the server is interactive and dynamic on the browser.
+Finally, the Nova view will be rendered on the server is interactive and dynamic on the browser.
 
 ![interactive-nova-view](/website/img/blog/interactive-nova-view.gif)
 
 
 ## Conclusion
 
-Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a web application using non Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) then Nova Proxy can help you to gradually migrate its views to a JavaScript view library (React, Vue.js) in a short period of time.
+Nova Proxy enables us to use modern view libraries on any web framework. So if you previously developed a web application using non-Javascript frameworks (Laravel, Flask, Ruby on Rails, etc) then Nova Proxy can help you to gradually migrate its views to a JavaScript view library (React, Vue.js) in a short period of time.
