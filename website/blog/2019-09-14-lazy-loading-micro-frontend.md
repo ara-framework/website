@@ -7,7 +7,7 @@ authorTwitter: felipeguizard
 ---
 ![live-realoding-lazy-loading](/website/img/blog/live-realoding-lazy-loading.png)
 
-Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As Software Architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the solution.
+Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As software architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the chosen solution.
 
 > True success requires sacrifice — Rick Riordan
 
