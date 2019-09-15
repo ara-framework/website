@@ -1,5 +1,5 @@
 ---
-title: Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework
+title: Live Reloading and Lazy Loading Micro-Frontends using Ara Framework
 author: Felipe Guizar Diaz
 authorURL: https://twitter.com/felipeguizard
 authorImageURL: https://www.gravatar.com/avatar/5c0f68aec4986617a543a5699032075e
