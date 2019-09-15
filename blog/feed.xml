@@ -4,7 +4,7 @@
         <title>Ara Framework Blog</title>
         <link>&quot;https://ara-framework.github.io/website/blog</link>
         <description>The best place to stay up-to-date with the latest Ara Framework news and events.</description>
-        <lastBuildDate>Wed, 28 Aug 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 14 Sep 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,19 @@
             <link>&quot;https://ara-framework.github.io/website/blog</link>
         </image>
         <copyright>Copyright © 2019 Ara Framework</copyright>
+        <item>
+            <title><![CDATA[Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework]]></title>
+            <link>&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend.html</link>
+            <guid>&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend.html</guid>
+            <pubDate>Sat, 14 Sep 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/website/img/blog/live-realoding-lazy-loading.png" alt="live-realoding-lazy-loading"></p>
+<p>Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As Software Architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the solution.</p>
+<blockquote>
+<p>True success requires sacrifice — Rick Riordan</p>
+</blockquote>
+<p>In this article, we'll learn how to mitigate one of them.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Universal Rendering in Laravel using Vue.js and Ara Framework]]></title>
             <link>&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html</link>

@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework · Ara Framework</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As Software Architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the solution."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework · Ara Framework"/><meta property="og:type" content="website"/><meta property="og:url" content="&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend"/><meta property="og:description" content="Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As Software Architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the solution."/><meta property="og:image" content="&quot;https://ara-framework.github.io/website/img/ara.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="&quot;https://ara-framework.github.io/website/img/ara.svg"/><link rel="shortcut icon" href="/website/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css"/><link rel="alternate" type="application/atom+xml" href="&quot;https://ara-framework.github.io/website/blog/atom.xml" title="Ara Framework Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="&quot;https://ara-framework.github.io/website/blog/feed.xml" title="Ara Framework Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-146072659-1', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script type="text/javascript" src="https://unpkg.com/vhtml@2.1.0/dist/vhtml.js"></script><script type="text/javascript" src="/website//js/index.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><script src="/website/js/scrollSpy.js"></script><link rel="stylesheet" href="/website/css/prism.css"/><link rel="stylesheet" href="/website/css/main.css"/><script src="/website/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/website/"><img class="logo" src="/website/img/ara.png" alt="Ara Framework"/><h2 class="headerTitleWithLogo">Ara Framework</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/website/docs/quick-start" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/website/blog/" target="_self">Blog</a></li><li class=""><a href="https://github.com/ara-framework" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/website/blog/2019/09/14/lazy-loading-micro-frontend">Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/28/universal-rendering-in-laravel">Universal Rendering in Laravel using Vue.js and Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/27/nuxt-js">Implementing Microfrontends in Nuxt.js using Svelte and Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/22/universal-rendering-in-flask">Universal Rendering in Flask using Vue.js and Ara Framework</a></li><li class="navListItem"><a class="navItem" href="/website/blog/2019/08/17/gatsby-js">Implementing Microfrontends in GatsbyJS using Ara Framework</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/website/blog/2019/09/14/lazy-loading-micro-frontend">Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework</a></h1><p class="post-meta">September 14, 2019</p><div class="authorBlock"><p class="post-authorName"><a href="https://twitter.com/felipeguizard" target="_blank" rel="noreferrer noopener">Felipe Guizar Diaz</a></p><div class="authorPhoto"><a href="https://twitter.com/felipeguizard" target="_blank" rel="noreferrer noopener"><img src="https://www.gravatar.com/avatar/5c0f68aec4986617a543a5699032075e" alt="Felipe Guizar Diaz"/></a></div></div></header><div><span><p><img src="/website/img/blog/live-realoding-lazy-loading.png" alt="live-realoding-lazy-loading"></p>
+<p>Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As Software Architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the solution.</p>
+<blockquote>
+<p>True success requires sacrifice — Rick Riordan</p>
+</blockquote>
+<p>In this article, we'll learn how to mitigate one of them.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="network-overload-performance-issues"></a><a href="#network-overload-performance-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network Overload (Performance issues)</h2>
+<p>Micro-frontends can deliver its JavaScript bundle independently. However, the host application needs to download a file for each Micro-Frontend it consumes. In the worst scenario, it could need to download a bunch of files affecting the performance for its initial load.</p>
+<h2><a class="anchor" aria-hidden="true" id="refresh-host-page-developer-experience-issues"></a><a href="#refresh-host-page-developer-experience-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Refresh Host Page (Developer experience issues)</h2>
+<p>Another issue comes during the development cycle. For a Monolith Frontend application is easy to refresh the page any time the code changes using a live reload tool. However, for Micro-frontends this task becomes more difficult because the host application only consume the JavaScript bundle for each Micro-Frontend and their underlying code is outside its boundaries.</p>
+<h2><a class="anchor" aria-hidden="true" id="webpack-nova-consumer"></a><a href="#webpack-nova-consumer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Webpack Nova Consumer</h2>
+<p>We created <a href="https://github.com/ara-framework/webpack-nova-consumer">webpack-nova-consumer</a> to tackle the problems mentioned above. This webpack plugin enables live reloading across Micro-Frontends(Novas) and enables lazy loading of the JavaScript bundles in production mode.</p>
+<p>We'll see it in action next.</p>
+<h2><a class="anchor" aria-hidden="true" id="set-up-host-application-nuxt-spa"></a><a href="#set-up-host-application-nuxt-spa" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Up Host Application (Nuxt SPA)</h2>
+<p>First, create a Nuxt application in SPA mode:</p>
+<p>Note: Choose <code>Single Page App</code> for the <code>Choose rendering mode</code> option and the default values for the rest of them.</p>
+<pre><code class="hljs css language-shell">create-nuxt-app nuxt-spa
+</code></pre>
+<p>Inside the folder <code>nuxt-spa</code>, run the nuxt application in <a href="http://localhost:3000">http://localhost:3000</a>:</p>
+<pre><code class="hljs css language-shell">yarn dev
+</code></pre>
+<p>Browser:</p>
+<p><img src="/website/img/blog/nuxt-spa.png" alt="nuxt-spa"></p>
+<p>After running the application we'll see a page rendering the example page for nuxt above.</p>
+<h2><a class="anchor" aria-hidden="true" id="set-up-micro-frontend-foo-nova"></a><a href="#set-up-micro-frontend-foo-nova" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Up Micro-frontend (Foo Nova)</h2>
+<p>Create a new Nova using the <a href="https://github.com/ara-framework/ara-cli">CLI</a>:</p>
+<p>Note: Type <code>n</code> when the <code>Do you want to include Server-Side Rendering (SSR)</code> option appears to include only the client-side entry point.</p>
+<pre><code class="hljs css language-shell">ara new:nova -t vue foo-nova
+</code></pre>
+<p>For production, we need to build the client-side entry point and deploy it in a storage service such as <a href="https://aws.amazon.com/s3/">Amazon S3</a> and distribute it through a CDN. However, for development, we'll serve it using <a href="https://webpack.js.org/configuration/dev-server/">webpack-dev-server</a>.</p>
+<p>Serve the JavaScript bundle in <a href="http://localhost:8080/client.js">http://localhost:8080/client.js</a></p>
+<pre><code class="hljs css language-shell">yarn dev
+</code></pre>
+<p>Notice, the <code>foo-nova/src/components</code> folder contains a component named <code>Example</code> that is used in the entry point <code>foo-nova/src/index.js</code> file. We'll render it in the nuxt application next.</p>
+<h2><a class="anchor" aria-hidden="true" id="implement-micro-frontend-foo-nova-in-nuxt"></a><a href="#implement-micro-frontend-foo-nova-in-nuxt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implement Micro-frontend (Foo Nova) in Nuxt</h2>
+<p>First, we need to install the <a href="/website/docs/nova-bridge">Nova Bridge</a> for Vue.js. This package provides a component to include Nova views inside Vue.js based applications.</p>
+<pre><code class="hljs css language-shell">yarn add nova-vue-bridge
+</code></pre>
+<p>Update the file <code>pages/index.vue</code> with the following code:</p>
+<pre><code class="hljs css language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">logo</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nova</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">:data</span>=<span class="hljs-string">"{ title: 'Ara Framework' }"</span>/&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> Nova <span class="hljs-keyword">from</span> <span class="hljs-string">'nova-vue-bridge'</span>
+<span class="hljs-keyword">import</span> Logo <span class="hljs-keyword">from</span> <span class="hljs-string">'~/components/Logo.vue'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">components</span>: {
+    Logo,
+    Nova
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;
+  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">100vh</span>;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">text-align</span>: center;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre>
+<p>Run the nuxt application again:</p>
+<pre><code class="hljs css language-shell">yarn dev
+</code></pre>
+<p>Browser:
+<img src="/website/img/blog/nuxt-logo-only.png" alt="nuxt-logo-only"></p>
+<p>After running the application the page shows only the Nuxt logo because we're not loading the JavaScript bundle for the <code>Foo Nova</code> yet. However, if we inspect the HTML rendered in the browser we can notice the Nova Bridge rendered the placeholder where the Micro-frontend (Nova) view will be mounted.</p>
+<pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-hypernova-key</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">data-hypernova-id</span>=<span class="hljs-string">"8f07d513-0c84-4b16-8058-08cf2a014d0d"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"application/json"</span> <span class="hljs-attr">data-hypernova-key</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">data-hypernova-id</span>=<span class="hljs-string">"8f07d513-0c84-4b16-8058-08cf2a014d0d"</span>&gt;</span><span class="handlebars"><span class="xml"><span class="hljs-comment">&lt;!--{"title":"Ara Framework"}--&gt;</span></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="load-javascript-bundle-using-webpack-nova-consumer"></a><a href="#load-javascript-bundle-using-webpack-nova-consumer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Load JavaScript bundle using Webpack Nova Consumer</h2>
+<p>Install <a href="https://github.com/ara-framework/webpack-nova-consumer">webpack-nova-consumer</a> in nuxt application.</p>
+<pre><code class="hljs css language-shell">yarn add --dev @ara/webpack-nova-consumer
+</code></pre>
+<p>After installing the package, import the NovaConsumer plugin and add it inside the <code>extend</code> section in the <code>nuxt.config.js</code> file.</p>
+<p><code>nuxt.config.js</code></p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> NovaConsumerPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">'@ara/webpack-nova-consumer'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  ...
+  build: {
+    <span class="hljs-comment">/*
+    ** You can extend webpack config here
+    */</span>
+    extend (config, ctx) {
+      config.plugins.push(<span class="hljs-keyword">new</span> NovaConsumerPlugin({
+        <span class="hljs-attr">novas</span>: [
+          {
+            <span class="hljs-attr">entry</span>: <span class="hljs-string">'http://localhost:8080/client.js'</span>,
+            <span class="hljs-attr">views</span>: [
+              <span class="hljs-string">'Example'</span>
+            ]
+          }
+        ]
+      }))
+    }
+  }
+}
+</code></pre>
+<p>The <code>NovaConsumerPlugin</code> receives an object with the information of the Micro-frontends (Novas) it's consuming:</p>
+<ul>
+<li><code>entry</code>: JavaScript bundle that contains the entry point for the Micro-frontend.</li>
+<li><code>views</code>: List of view names that the Micro-frontend supports. Note: This names are used behind of scenes to lazy load the bundle for the Micro-frontend that renders the view placed in the page.</li>
+</ul>
+<p>Browser:</p>
+<p><img src="/website/img/blog/foo-nova.png" alt="foo-nova"></p>
+<p>After running the nuxt application again we'll see the Micro-Frontend rendered.</p>
+<h2><a class="anchor" aria-hidden="true" id="live-reloading"></a><a href="#live-reloading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Live Reloading</h2>
+<p>Now, we can update the <code>Example.vue</code> component in the <code>foo-bar/components</code> folder and the host application (nuxt) will load the latest changes automatically.</p>
+<p>Update <code>Example.vue</code>:</p>
+<pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{title}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">"title"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">'title'</span>]
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</span></code></pre>
+<p>Live Reloading in action:</p>
+<p><img src="/website/img/blog/live-reloading.gif" alt="live-reloading"></p>
+<h2><a class="anchor" aria-hidden="true" id="set-up-micro-frontend-bar-nova"></a><a href="#set-up-micro-frontend-bar-nova" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Up Micro-frontend (Bar Nova)</h2>
+<p>In order to test our nuxt application using more than one Micro-frontend we'll create a new one named <code>bar-nova</code>.</p>
+<p>Create a new nova following the steps mentioned before.</p>
+<pre><code class="hljs css language-shell">ara new:nova -t vue bar-nova
+</code></pre>
+<p>Change the view name from <code>Example</code> to <code>Bar</code> in `src/index.js:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { load, Vue, mountComponent, loadById } <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova-vue'</span>
+<span class="hljs-keyword">import</span> Example <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Example.vue'</span>
+
+<span class="hljs-keyword">const</span> render = <span class="hljs-function">(<span class="hljs-params">name, { node, data }</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (name === <span class="hljs-string">'Bar'</span>) {
+    <span class="hljs-keyword">return</span> mountComponent(Vue.extend(Example), node, data)
+  }
+}
+
+<span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'NovaMount'</span>, ({ detail }) =&gt; {
+  <span class="hljs-keyword">const</span> { name, id } = detail
+
+  <span class="hljs-keyword">const</span> payload = loadById(name, id)
+
+  <span class="hljs-keyword">if</span> (payload) {
+    render(name, payload)
+  }
+})
+
+load(<span class="hljs-string">'Bar'</span>).forEach(render.bind(<span class="hljs-literal">null</span>, <span class="hljs-string">'Bar'</span>))
+</code></pre>
+<p>Serve the JavaScript bundle in <a href="http://localhost:8081/client.js">http://localhost:8081/client.js</a></p>
+<pre><code class="hljs css language-shell">yarn dev
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="implement-micro-frontend-bar-nova-in-nuxt"></a><a href="#implement-micro-frontend-bar-nova-in-nuxt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implement Micro-frontend (Bar Nova) in Nuxt</h2>
+<p>We need to create a new page <code>bar</code> where we'll implement the <code>Bar</code> view. Finally, we'll add a link in the main page to navigate to the <code>bar</code> one.</p>
+<p>Crete new page <code>pages/bar.vue</code>:</p>
+<p><code>bar.vue</code></p>
+<pre><code class="hljs css language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">logo</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">nova</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Bar"</span> <span class="hljs-attr">:data</span>=<span class="hljs-string">"{ title: 'Bar Page' }"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">nuxt-link</span>  <span class="hljs-attr">to</span>=<span class="hljs-string">"/"</span>&gt;</span>Main Page<span class="hljs-tag">&lt;/<span class="hljs-name">nuxt-link</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">import</span> Nova <span class="hljs-keyword">from</span> <span class="hljs-string">'nova-vue-bridge'</span>
+<span class="hljs-keyword">import</span> Logo <span class="hljs-keyword">from</span> <span class="hljs-string">'~/components/Logo.vue'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-attr">components</span>: {
+    Logo,
+    Nova
+  }
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+<span class="hljs-selector-class">.container</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;
+  <span class="hljs-attribute">min-height</span>: <span class="hljs-number">100vh</span>;
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">justify-content</span>: center;
+  <span class="hljs-attribute">align-items</span>: center;
+  <span class="hljs-attribute">text-align</span>: center;
+}
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre>
+<p>Add link to the <code>bar</code> page in the <code>pages/index.vue</code> file:</p>
+<p><code>index.vue</code></p>
+<pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">logo</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">nova</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">:data</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{ title: 'Ara Framework' }</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">nuxt-link</span>  <span class="hljs-attr">to</span>=<span class="hljs-string">"/bar"</span>&gt;</span>Bar Page<span class="hljs-tag">&lt;/<span class="hljs-name">nuxt-link</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+</span></code></pre>
+<p>Add new entry point in the <code>nuxt.config.js</code> file:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> NovaConsumerPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">'@ara/webpack-nova-consumer'</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  ...
+  build: {
+    <span class="hljs-comment">/*
+    ** You can extend webpack config here
+    */</span>
+    extend (config, ctx) {
+      config.plugins.push(<span class="hljs-keyword">new</span> NovaConsumerPlugin({
+        <span class="hljs-attr">novas</span>: [
+          {
+            <span class="hljs-attr">entry</span>: <span class="hljs-string">'http://localhost:8080/client.js'</span>,
+            <span class="hljs-attr">views</span>: [
+              <span class="hljs-string">'Example'</span>
+            ]
+          },
+          {
+            <span class="hljs-attr">entry</span>: <span class="hljs-string">'http://localhost:8081/client.js'</span>,
+            <span class="hljs-attr">views</span>: [
+              <span class="hljs-string">'Bar'</span>
+            ]
+          }
+        ]
+      }))
+    }
+  }
+}
+</code></pre>
+<p>Browser:</p>
+<p><img src="/website/img/blog/bar-nova.gif" alt="bar-nova"></p>
+<p>After running the nuxt application again we'll the Micro-frontend views rendered navigating from one page to other. We'll to test the lazy loading feature next.</p>
+<h2><a class="anchor" aria-hidden="true" id="lazy-loading"></a><a href="#lazy-loading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Lazy Loading</h2>
+<p>Lazy loading is enabled automatically using webpack in production mode. The webpack plugin adds a <code>nova-lazy-load</code> script in the built app. Behind scenes this script listen the <code>NovaMount</code> event emitted by Nova Bridge in order to load the JavaScript bundle necessary to mount the requested view.</p>
+<p>Build nuxt application:</p>
+<pre><code class="hljs"><span class="hljs-symbol">yarn</span> <span class="hljs-keyword">build
+</span></code></pre>
+<p>Install <code>http-server</code> to serve the static files:</p>
+<pre><code class="hljs">npm <span class="hljs-selector-tag">i</span> -g http-server
+</code></pre>
+<p>Go to the <code>dist</code> folder and serve the static files in <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a>:</p>
+<pre><code class="hljs">http-server . -<span class="hljs-selector-tag">p</span> <span class="hljs-number">3000</span>
+</code></pre>
+<p>Browser:</p>
+<p><img src="/website/img/blog/lazy-loading.gif" alt="lazy-loading"></p>
+<p>Notice, the JavaScript bundle for the Bar Micro-frontend is loaded only when the user navigates to the <code>bar</code> page. In general, the Nova bundles are only loaded when one of their views is placed on the page.</p>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Live Reloading and Lazy Loading for Micro-Frontends using Ara Framework" data-url="&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend" data-related="true" data-via="felipeguizard" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/website/blog">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#network-overload-performance-issues">Network Overload (Performance issues)</a></li><li><a href="#refresh-host-page-developer-experience-issues">Refresh Host Page (Developer experience issues)</a></li><li><a href="#webpack-nova-consumer">Webpack Nova Consumer</a></li><li><a href="#set-up-host-application-nuxt-spa">Set Up Host Application (Nuxt SPA)</a></li><li><a href="#set-up-micro-frontend-foo-nova">Set Up Micro-frontend (Foo Nova)</a></li><li><a href="#implement-micro-frontend-foo-nova-in-nuxt">Implement Micro-frontend (Foo Nova) in Nuxt</a></li><li><a href="#load-javascript-bundle-using-webpack-nova-consumer">Load JavaScript bundle using Webpack Nova Consumer</a></li><li><a href="#live-reloading">Live Reloading</a></li><li><a href="#set-up-micro-frontend-bar-nova">Set Up Micro-frontend (Bar Nova)</a></li><li><a href="#implement-micro-frontend-bar-nova-in-nuxt">Implement Micro-frontend (Bar Nova) in Nuxt</a></li><li><a href="#lazy-loading">Lazy Loading</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/website/" class="nav-home"><img src="/website/img/ara.png" alt="Ara Framework"/></a><div><h5>Docs</h5><a href="/website/docs/en/quick-start.html">Getting Started</a></div><div><h5>Community</h5><a href="https://stackoverflow.com/questions/tagged/ara-framework" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://twitter.com/AraFramework" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/website/blog">Blog</a><a href="https://github.com/ara-framework">GitHub</a><div class="social"><a href="https://twitter.com/AraFramework" class="twitter-follow-button">Follow @AraFramework</a></div></div></section><section class="copyright">Copyright © 2019 Ara Framework</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
