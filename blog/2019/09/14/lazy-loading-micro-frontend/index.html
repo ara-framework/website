@@ -73,18 +73,18 @@
 <blockquote>
 <p>True success requires sacrifice — Rick Riordan</p>
 </blockquote>
-<p>In this article, we'll learn how to mitigate one of them.</p>
+<p>In this article, we'll learn how to mitigate some of them.</p>
 <!--truncate-->
 <h2><a class="anchor" aria-hidden="true" id="network-overload-performance-issues"></a><a href="#network-overload-performance-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Network Overload (Performance issues)</h2>
 <p>Micro-frontends can deliver its JavaScript bundle independently. However, the host application needs to download a file for each Micro-Frontend it consumes. In the worst scenario, it could need to download a bunch of files affecting the performance for its initial load.</p>
 <h2><a class="anchor" aria-hidden="true" id="refresh-host-page-developer-experience-issues"></a><a href="#refresh-host-page-developer-experience-issues" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Refresh Host Page (Developer experience issues)</h2>
 <p>Another issue comes during the development cycle. For a Monolith Frontend application is easy to refresh the page any time the code changes using a live reload tool. However, for Micro-frontends this task becomes more difficult because the host application only consume the JavaScript bundle for each Micro-Frontend and their underlying code is outside its boundaries.</p>
 <h2><a class="anchor" aria-hidden="true" id="webpack-nova-consumer"></a><a href="#webpack-nova-consumer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Webpack Nova Consumer</h2>
-<p>We created <a href="https://github.com/ara-framework/webpack-nova-consumer">webpack-nova-consumer</a> to tackle the problems mentioned above. This webpack plugin enables live reloading across Micro-Frontends(Novas) and enables lazy loading of the JavaScript bundles in production mode.</p>
-<p>We'll see it in action next.</p>
+<p>We created <a href="https://github.com/ara-framework/webpack-nova-consumer">webpack-nova-consumer</a> to tackle the problems mentioned above. This plugin supports live reloading across Micro-Frontends(Novas) and lazy loading for the JavaScript bundles in production mode.</p>
+<p>We'll see it in action later through this article.</p>
 <h2><a class="anchor" aria-hidden="true" id="set-up-host-application-nuxt-spa"></a><a href="#set-up-host-application-nuxt-spa" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Up Host Application (Nuxt SPA)</h2>
-<p>First, create a Nuxt application in SPA mode:</p>
-<p>Note: Choose <code>Single Page App</code> for the <code>Choose rendering mode</code> option and the default values for the rest of them.</p>
+<p>First, create a Nuxt application in <code>spa</code> mode:</p>
+<p>Note: Choose <code>Single Page App</code> for the <code>Choose rendering mode</code> option.</p>
 <pre><code class="hljs css language-shell">create-nuxt-app nuxt-spa
 </code></pre>
 <p>Inside the folder <code>nuxt-spa</code>, run the nuxt application in <a href="http://localhost:3000">http://localhost:3000</a>:</p>
@@ -92,7 +92,7 @@
 </code></pre>
 <p>Browser:</p>
 <p><img src="/website/img/blog/nuxt-spa.png" alt="nuxt-spa"></p>
-<p>After running the application we'll see a page rendering the example page for nuxt above.</p>
+<p>After running the application we'll see a page rendering the example page for nuxt.</p>
 <h2><a class="anchor" aria-hidden="true" id="set-up-micro-frontend-foo-nova"></a><a href="#set-up-micro-frontend-foo-nova" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Up Micro-frontend (Foo Nova)</h2>
 <p>Create a new Nova using the <a href="https://github.com/ara-framework/ara-cli">CLI</a>:</p>
 <p>Note: Type <code>n</code> when the <code>Do you want to include Server-Side Rendering (SSR)</code> option appears to include only the client-side entry point.</p>
@@ -143,7 +143,7 @@
 </code></pre>
 <p>Browser:
 <img src="/website/img/blog/nuxt-logo-only.png" alt="nuxt-logo-only"></p>
-<p>After running the application the page shows only the Nuxt logo because we're not loading the JavaScript bundle for the <code>Foo Nova</code> yet. However, if we inspect the HTML rendered in the browser we can notice the Nova Bridge rendered the placeholder where the Micro-frontend (Nova) view will be mounted.</p>
+<p>After running the application the page shows only the Nuxt logo because we're not loading the JavaScript bundle for the <code>Foo Nova</code> yet. However, if we inspect the HTML elements in the browser we can notice the Nova Bridge renderers the placeholder where the Micro-frontend (Nova) view will be mounted.</p>
 <pre><code class="hljs css language-html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">data-hypernova-key</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">data-hypernova-id</span>=<span class="hljs-string">"8f07d513-0c84-4b16-8058-08cf2a014d0d"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"application/json"</span> <span class="hljs-attr">data-hypernova-key</span>=<span class="hljs-string">"Example"</span> <span class="hljs-attr">data-hypernova-id</span>=<span class="hljs-string">"8f07d513-0c84-4b16-8058-08cf2a014d0d"</span>&gt;</span><span class="handlebars"><span class="xml"><span class="hljs-comment">&lt;!--{"title":"Ara Framework"}--&gt;</span></span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
@@ -179,13 +179,13 @@
 <p>The <code>NovaConsumerPlugin</code> receives an object with the information of the Micro-frontends (Novas) it's consuming:</p>
 <ul>
 <li><code>entry</code>: JavaScript bundle that contains the entry point for the Micro-frontend.</li>
-<li><code>views</code>: List of view names that the Micro-frontend supports. Note: This names are used behind of scenes to lazy load the bundle for the Micro-frontend that renders the view placed in the page.</li>
+<li><code>views</code>: List of view names that the Micro-frontend supports.</li>
 </ul>
 <p>Browser:</p>
 <p><img src="/website/img/blog/foo-nova.png" alt="foo-nova"></p>
 <p>After running the nuxt application again we'll see the Micro-Frontend rendered.</p>
 <h2><a class="anchor" aria-hidden="true" id="live-reloading"></a><a href="#live-reloading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Live Reloading</h2>
-<p>Now, we can update the <code>Example.vue</code> component in the <code>foo-bar/components</code> folder and the host application (nuxt) will load the latest changes automatically.</p>
+<p>Now, we can update the <code>Example.vue</code> component in the <code>foo-bar/components</code> folder and the host application (nuxt) will reaload the page showing the latest changes.</p>
 <p>Update <code>Example.vue</code>:</p>
 <pre><code class="hljs css language-vue"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
@@ -204,10 +204,10 @@
 <p><img src="/website/img/blog/live-reloading.gif" alt="live-reloading"></p>
 <h2><a class="anchor" aria-hidden="true" id="set-up-micro-frontend-bar-nova"></a><a href="#set-up-micro-frontend-bar-nova" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set Up Micro-frontend (Bar Nova)</h2>
 <p>In order to test our nuxt application using more than one Micro-frontend we'll create a new one named <code>bar-nova</code>.</p>
-<p>Create a new nova following the steps mentioned before.</p>
+<p>Create a new nova following the same steps mentioned before.</p>
 <pre><code class="hljs css language-shell">ara new:nova -t vue bar-nova
 </code></pre>
-<p>Change the view name from <code>Example</code> to <code>Bar</code> in `src/index.js:</p>
+<p>Change the view name from <code>Example</code> to <code>Bar</code> in <code>src/index.js</code>:</p>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { load, Vue, mountComponent, loadById } <span class="hljs-keyword">from</span> <span class="hljs-string">'hypernova-vue'</span>
 <span class="hljs-keyword">import</span> Example <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Example.vue'</span>
 
@@ -233,7 +233,7 @@ load(<span class="hljs-string">'Bar'</span>).forEach(render.bind(<span class="hl
 <pre><code class="hljs css language-shell">yarn dev
 </code></pre>
 <h2><a class="anchor" aria-hidden="true" id="implement-micro-frontend-bar-nova-in-nuxt"></a><a href="#implement-micro-frontend-bar-nova-in-nuxt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Implement Micro-frontend (Bar Nova) in Nuxt</h2>
-<p>We need to create a new page <code>bar</code> where we'll implement the <code>Bar</code> view. Finally, we'll add a link in the main page to navigate to the <code>bar</code> one.</p>
+<p>We need to create a new page named <code>bar</code> where we'll implement the <code>Bar</code> view. we'll also add a link in the main page to navigate to the <code>bar</code> page.</p>
 <p>Crete new page <code>pages/bar.vue</code>:</p>
 <p><code>bar.vue</code></p>
 <pre><code class="hljs css language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
@@ -317,9 +317,9 @@ load(<span class="hljs-string">'Bar'</span>).forEach(render.bind(<span class="hl
 </code></pre>
 <p>Browser:</p>
 <p><img src="/website/img/blog/bar-nova.gif" alt="bar-nova"></p>
-<p>After running the nuxt application again we'll the Micro-frontend views rendered navigating from one page to other. We'll to test the lazy loading feature next.</p>
+<p>After running the nuxt application again we'll see the views are rendered navigating from one page to other. We'll test the lazy loading feature next.</p>
 <h2><a class="anchor" aria-hidden="true" id="lazy-loading"></a><a href="#lazy-loading" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Lazy Loading</h2>
-<p>Lazy loading is enabled automatically using webpack in production mode. The webpack plugin adds a <code>nova-lazy-load</code> script in the built app. Behind scenes this script listen the <code>NovaMount</code> event emitted by Nova Bridge in order to load the JavaScript bundle necessary to mount the requested view.</p>
+<p>Lazy loading is enabled automatically using webpack in production mode. The plugin adds a <code>nova-lazy-load</code> script in the built app. Behind scenes this script listen the <code>NovaMount</code> event emitted by Nova Bridge in order to load the JavaScript bundle that mounts the requested view.</p>
 <p>Build nuxt application:</p>
 <pre><code class="hljs"><span class="hljs-symbol">yarn</span> <span class="hljs-keyword">build
 </span></code></pre>
