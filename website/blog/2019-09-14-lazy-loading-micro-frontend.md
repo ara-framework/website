@@ -11,7 +11,7 @@ Micro-frontends solve some organizational and technical problems, nevertheless, 
 
 > True success requires sacrifice — Rick Riordan
 
-In this article, we'll learn how to mitigate one of them.
+In this article, we'll learn how to mitigate some of them.
 
 <!--truncate-->
 
@@ -25,15 +25,15 @@ Another issue comes during the development cycle. For a Monolith Frontend applic
 
 ## Webpack Nova Consumer
 
-We created [webpack-nova-consumer](https://github.com/ara-framework/webpack-nova-consumer) to tackle the problems mentioned above. This webpack plugin enables live reloading across Micro-Frontends(Novas) and enables lazy loading of the JavaScript bundles in production mode. 
+We created [webpack-nova-consumer](https://github.com/ara-framework/webpack-nova-consumer) to tackle the problems mentioned above. This plugin supports live reloading across Micro-Frontends(Novas) and lazy loading for the JavaScript bundles in production mode. 
 
-We'll see it in action next.
+We'll see it in action later through this article.
 
 ## Set Up Host Application (Nuxt SPA)
 
-First, create a Nuxt application in SPA mode:
+First, create a Nuxt application in `spa` mode:
 
-Note: Choose `Single Page App` for the `Choose rendering mode` option and the default values for the rest of them.
+Note: Choose `Single Page App` for the `Choose rendering mode` option.
 
 ```shell
 create-nuxt-app nuxt-spa
@@ -49,7 +49,7 @@ Browser:
 
 ![nuxt-spa](/website/img/blog/nuxt-spa.png)
 
-After running the application we'll see a page rendering the example page for nuxt above.
+After running the application we'll see a page rendering the example page for nuxt.
 
 ## Set Up Micro-frontend (Foo Nova)
 
@@ -122,7 +122,7 @@ yarn dev
 Browser:
 ![nuxt-logo-only](/website/img/blog/nuxt-logo-only.png)
 
-After running the application the page shows only the Nuxt logo because we're not loading the JavaScript bundle for the `Foo Nova` yet. However, if we inspect the HTML rendered in the browser we can notice the Nova Bridge rendered the placeholder where the Micro-frontend (Nova) view will be mounted.
+After running the application the page shows only the Nuxt logo because we're not loading the JavaScript bundle for the `Foo Nova` yet. However, if we inspect the HTML elements in the browser we can notice the Nova Bridge renderers the placeholder where the Micro-frontend (Nova) view will be mounted.
 
 ```html
 <div data-hypernova-key="Example" data-hypernova-id="8f07d513-0c84-4b16-8058-08cf2a014d0d"></div>
@@ -169,7 +169,7 @@ export default {
 The `NovaConsumerPlugin` receives an object with the information of the Micro-frontends (Novas) it's consuming:
 
 - `entry`: JavaScript bundle that contains the entry point for the Micro-frontend.
-- `views`: List of view names that the Micro-frontend supports. Note: This names are used behind of scenes to lazy load the bundle for the Micro-frontend that renders the view placed in the page.
+- `views`: List of view names that the Micro-frontend supports.
 
 Browser:
 
@@ -179,7 +179,7 @@ After running the nuxt application again we'll see the Micro-Frontend rendered.
 
 ## Live Reloading
 
-Now, we can update the `Example.vue` component in the `foo-bar/components` folder and the host application (nuxt) will load the latest changes automatically.
+Now, we can update the `Example.vue` component in the `foo-bar/components` folder and the host application (nuxt) will reaload the page showing the latest changes.
 
 Update `Example.vue`:
 
@@ -206,13 +206,13 @@ Live Reloading in action:
 
 In order to test our nuxt application using more than one Micro-frontend we'll create a new one named `bar-nova`.
 
-Create a new nova following the steps mentioned before.
+Create a new nova following the same steps mentioned before.
 
 ```shell
 ara new:nova -t vue bar-nova
 ```
 
-Change the view name from `Example` to `Bar` in `src/index.js:
+Change the view name from `Example` to `Bar` in `src/index.js`:
 
 ```js
 import { load, Vue, mountComponent, loadById } from 'hypernova-vue'
@@ -245,7 +245,7 @@ yarn dev
 
 ## Implement Micro-frontend (Bar Nova) in Nuxt
 
-We need to create a new page `bar` where we'll implement the `Bar` view. Finally, we'll add a link in the main page to navigate to the `bar` one.
+We need to create a new page named `bar` where we'll implement the `Bar` view. we'll also add a link in the main page to navigate to the `bar` page.
 
 Crete new page `pages/bar.vue`:
 
@@ -343,11 +343,11 @@ Browser:
 
 ![bar-nova](/website/img/blog/bar-nova.gif)
 
-After running the nuxt application again we'll the Micro-frontend views rendered navigating from one page to other. We'll to test the lazy loading feature next.
+After running the nuxt application again we'll see the views are rendered navigating from one page to other. We'll test the lazy loading feature next.
 
 ## Lazy Loading
 
-Lazy loading is enabled automatically using webpack in production mode. The webpack plugin adds a `nova-lazy-load` script in the built app. Behind scenes this script listen the `NovaMount` event emitted by Nova Bridge in order to load the JavaScript bundle necessary to mount the requested view.
+Lazy loading is enabled automatically using webpack in production mode. The plugin adds a `nova-lazy-load` script in the built app. Behind scenes this script listen the `NovaMount` event emitted by Nova Bridge in order to load the JavaScript bundle that mounts the requested view.
 
 Build nuxt application:
 
