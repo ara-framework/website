@@ -249,7 +249,7 @@ yarn dev
 
 We need to create a new page named `bar` where we'll implement the `Bar` view. we'll also add a link in the main page to navigate to the `bar` page.
 
-Crete new page `pages/bar.vue`:
+Create a new page `pages/bar.vue`:
 
 `bar.vue`
 
@@ -290,7 +290,7 @@ export default {
 </style>
 ```
 
-Add link to the `bar` page in the `pages/index.vue` file:
+Add a link to the `bar` page in the `pages/index.vue` file:
 
 `index.vue`
 
@@ -349,17 +349,17 @@ After running the nuxt application again we'll see the views are rendered naviga
 
 ## Lazy Loading
 
-Lazy loading is enabled automatically using webpack in production mode. The plugin adds a `nova-lazy-load` script in the built app. Behind scenes this script listen the `NovaMount` event emitted by Nova Bridge in order to load the JavaScript bundle that mounts the requested view.
+Lazy loading is enabled automatically using webpack in production mode. The plugin adds a `nova-lazy-load` script in the built app. Behind scenes, this script listens to the `NovaMount` event emitted by Nova Bridge in order to load the JavaScript bundle that mounts the requested view.
 
 Build nuxt application:
 
-```
+```shell
 yarn build
 ```
 
 Install `http-server` to serve the static files:
 
-```
+```shell
 npm i -g http-server
 ```
 
