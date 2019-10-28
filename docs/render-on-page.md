@@ -29,6 +29,8 @@ var app = express();
 
 var hbs = require('hbs');
 var directive = require('hypernova-handlebars-directive');
+
+directive(hbs);
 ```
 
 We can use the Nova directive in the main page `views/index.hbs`. You need to pass the `name` and the data using the `data` attribute or `data-<field>` for each data field.
