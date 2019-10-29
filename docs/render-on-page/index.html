@@ -82,6 +82,8 @@
 
 <span class="hljs-keyword">var</span> hbs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'hbs'</span>);
 <span class="hljs-keyword">var</span> directive = <span class="hljs-built_in">require</span>(<span class="hljs-string">'hypernova-handlebars-directive'</span>);
+
+directive(hbs);
 </code></pre>
 <p>We can use the Nova directive in the main page <code>views/index.hbs</code>. You need to pass the <code>name</code> and the data using the <code>data</code> attribute or <code>data-&lt;field&gt;</code> for each data field.</p>
 <pre><code class="hljs css language-hbs"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{title}}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
