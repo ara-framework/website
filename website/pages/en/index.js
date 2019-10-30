@@ -158,7 +158,7 @@ class Index extends React.Component {
             title: 'Universal Rendering',
           },
           {
-            content: 'You can render Nova views on any web technology and framework such as Nuxt, GatsbyJS, Wordpress, Flask and more.',
+            content: 'You can render Nova views on any web technology and framework such as Nuxt, GatsbyJS, WordPress, Flask and more.',
             image: `${baseUrl}img/undraw_wordpress.svg`,
             imageAlign: 'top',
             title: 'Consumer Agnostic',
