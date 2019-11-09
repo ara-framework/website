@@ -17,6 +17,8 @@ The Architecture consists mainly of four components:
 
 * **Nova Cluster:** It’s a Micro-frontends aggregator to enable consumers to ask for the views they want without know which Micro-frontend is responsible to render them.
 
+**Note**: Nova Cluster is optional, Nova Proxy can resolve views using any Microfrontend (Nova) directly instead Nova Cluster. However, As we can see in the diagram it can only communicate with one Nova server.
+
 ## How The Nova Architecture Works
 ![](https://cdn-images-1.medium.com/max/2400/1*0_KCs-IFVCIN8J5RwP7uFg.png)
 1. A user requests a page to **Nova Proxy**.
@@ -49,7 +51,7 @@ The Architecture consists mainly of four components:
 
 12. **Nova Cluster** aggregates the Micro-frontends responses and sends them back to **Nova Proxy**.
 
-13. **Nova Proxy** replaces the placeholders with the HTML of the successful results and keeps the placeholders for the failed ones in order to enable the client-side scripts renderer the views in the browser as a fallback.
+13. **Nova Proxy** replaces the placeholders with the HTML of the successful results and keeps the placeholders for the failed ones in order to enable the client-side scripts to renderer the views in the browser as a fallback.
 
 14. **Nova Proxy** sends back the page to the user.
 

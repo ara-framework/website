@@ -1,11 +1,12 @@
 {
   "docs": {
     "Getting Started": [
+      "nova-architecture",
       "quick-start",
       "render-on-page"
     ],
-    "Architecture": [
-      "nova-architecture"
+    "Tools": [
+      "nova-cluster"
     ],
     "Nova Directives": [
       "hypernova-jinja2-directive"
