@@ -20,7 +20,8 @@
       "nova-react",
       "nova-vue",
       "nova-angular",
-      "nova-svelte"
+      "nova-svelte",
+      "nova-preact"
     ]
   }
 }

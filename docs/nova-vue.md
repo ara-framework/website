@@ -20,7 +20,7 @@ On the server, wraps the component in a function to render it to a HTML string g
 
 ```js
 import hypernova from 'hypernova/server'
-import { renderVue, Vue } from 'hypernova-vue'
+import { renderVue, Vue } from 'hypernova-vue/server'
 
 import Example from './components/Example.vue'
 
