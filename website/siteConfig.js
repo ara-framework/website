@@ -83,9 +83,7 @@ const siteConfig = {
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
-    'https://buttons.github.io/buttons.js',
-    'https://unpkg.com/vhtml@2.1.0/dist/vhtml.js',
-    `${baseUrl}/js/index.js`
+    'https://buttons.github.io/buttons.js'
   ],
 
   // On page navigation for the current documentation page.
