@@ -9,7 +9,8 @@
       "nova-cluster"
     ],
     "Nova Directives": [
-      "hypernova-jinja2-directive"
+      "hypernova-jinja2-directive",
+      "hypernova-blade-directive"
     ],
     "Nova Bridge": [
       "nova-bridge",

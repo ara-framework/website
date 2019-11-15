@@ -41,3 +41,7 @@ You need to pass the component name and component data. The `data` is optional.
 ```
 {{ nova('Example', {'title':'Ara Framework'}) }}
 ```
+
+## Tutorial
+
+Take a look in the  next post: [Universal Rendering in Flask using Vue.js and Ara Framework](/website/blog/2019/08/22/universal-rendering-in-flask)
