@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>&quot;https://ara-framework.github.io/website/blog</id>
+    <id>"https://ara-framework.github.io/website/blog</id>
     <title>Ara Framework Blog</title>
-    <updated>2019-09-14T06:00:00Z</updated>
-    <generator>Feed for Node.js</generator>
+    <updated>2019-09-14T06:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="&quot;https://ara-framework.github.io/website/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ara Framework news and events.</subtitle>
-    <logo>&quot;https://ara-framework.github.io/website/img/ara.png</logo>
+    <logo>"https://ara-framework.github.io/website/img/ara.png</logo>
     <rights>Copyright © 2019 Ara Framework</rights>
     <entry>
         <title type="html"><![CDATA[Live Reloading and Lazy Loading Micro-Frontends using Ara Framework]]></title>
-        <id>&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend.html</id>
-        <link href="&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend.html">
-        </link>
-        <updated>2019-09-14T06:00:00Z</updated>
+        <id>"https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend.html</id>
+        <link href="&quot;https://ara-framework.github.io/website/blog/2019/09/14/lazy-loading-micro-frontend.html"/>
+        <updated>2019-09-14T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/website/img/blog/live-realoding-lazy-loading.png" alt="live-realoding-lazy-loading"></p>
 <p>Demo code <a href="https://github.com/marconi1992/ara-spa-demo">here</a>.</p>
 <p>Micro-frontends solve some organizational and technical problems, nevertheless, they could cause other ones. As software architects we need to take decisions to solve the most critical problems and figure out how to mitigate the new ones caused by the chosen solution.</p>
@@ -24,63 +23,64 @@
 ]]></summary>
         <author>
             <name>Felipe Guizar Diaz</name>
+            <email/>
             <uri>https://twitter.com/felipeguizard</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Universal Rendering in Laravel using Vue.js and Ara Framework]]></title>
-        <id>&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html</id>
-        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html">
-        </link>
-        <updated>2019-08-28T06:00:00Z</updated>
+        <id>"https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html</id>
+        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/28/universal-rendering-in-laravel.html"/>
+        <updated>2019-08-28T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/website/img/blog/laravel-vue.png" alt="Laravel + Vue.js"></p>
 <p>Universal Rendering consists in rendering pages on the server and making them interactive on the browser using the same view components built with a library such as React, Vue.js, Angular, etc.</p>
 <p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a>, and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non-JavaScript frameworks like Laravel?</p>
 ]]></summary>
         <author>
             <name>Felipe Guizar Diaz</name>
+            <email/>
             <uri>https://twitter.com/felipeguizard</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Implementing Microfrontends in Nuxt.js using Svelte and Ara Framework]]></title>
-        <id>&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html</id>
-        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html">
-        </link>
-        <updated>2019-08-27T06:00:00Z</updated>
+        <id>"https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html</id>
+        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/27/nuxt-js.html"/>
+        <updated>2019-08-27T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><img src="/website/img/blog/nuxt-svelte.png" alt="Nuxt + Svelte"></p>
 <p>Demo code <a href="https://github.com/marconi1992/ara-nuxtjs-demo">here</a></p>
 <p><a href="https://nuxtjs.org/">Nuxt.js</a> is the most popular framework to easily develop Universal Applications using Vue.js. It also supports static websites, single-page, mobile, and desktop applications.</p>
 ]]></summary>
         <author>
             <name>Felipe Guizar Diaz</name>
+            <email/>
             <uri>https://twitter.com/felipeguizard</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Universal Rendering in Flask using Vue.js and Ara Framework]]></title>
-        <id>&quot;https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html</id>
-        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html">
-        </link>
-        <updated>2019-08-22T06:00:00Z</updated>
+        <id>"https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html</id>
+        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/22/universal-rendering-in-flask.html"/>
+        <updated>2019-08-22T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>Universal Rendering consists in server-side rendered pages and making them interactive on the browser, using the same view components built with React, Vue.js, Angular, etc.</p>
 <p>Nowadays, JavaScript frameworks such as <a href="https://nextjs.org/">Next.js</a>, <a href="https://nuxtjs.org/">Nuxt.js</a> and <a href="https://github.com/angular/universal">NgUniversal</a> make this duty easier. However, how can we achieve it on non JavaScript frameworks like Flask?</p>
 ]]></summary>
         <author>
             <name>Felipe Guizar Diaz</name>
+            <email/>
             <uri>https://twitter.com/felipeguizard</uri>
         </author>
     </entry>
     <entry>
         <title type="html"><![CDATA[Implementing Microfrontends in GatsbyJS using Ara Framework]]></title>
-        <id>&quot;https://ara-framework.github.io/website/blog/2019/08/17/gatsby-js.html</id>
-        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/17/gatsby-js.html">
-        </link>
-        <updated>2019-08-17T06:00:00Z</updated>
+        <id>"https://ara-framework.github.io/website/blog/2019/08/17/gatsby-js.html</id>
+        <link href="&quot;https://ara-framework.github.io/website/blog/2019/08/17/gatsby-js.html"/>
+        <updated>2019-08-17T06:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p><a href="https://www.gatsbyjs.org/">GatsbyJS</a> is the most popular framework to create static websites. In the software industry, the concept of static site generators is not recent but it’s becoming more popular thanks to the recent evolution of the JavaScript technologies and the introduction of <a href="https://jamstack.org/">JAMstack</a>.</p>
 ]]></summary>
         <author>
             <name>Felipe Guizar Diaz</name>
+            <email/>
             <uri>https://twitter.com/felipeguizard</uri>
         </author>
     </entry>
