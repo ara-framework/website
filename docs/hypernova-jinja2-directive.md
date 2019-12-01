@@ -4,7 +4,7 @@ title: Jinja2 Nova Directive
 sidebar_label: Jinja2
 ---
 
-[hypernova-jinja2-directive](https://github.com/ara-framework/hypernova-jinja2-directive) enables you render a Hypernova placeholder for [Nova Proxy](https://github.com/ara-framework/nova-proxy) using [Jinja2](https://github.com/pallets/jinja)
+[hypernova-jinja2-directive](https://github.com/ara-framework/hypernova-jinja2-directive) enables you render a Hypernova placeholder for [Nova Proxy](https://github.com/ara-framework/nova-proxy) using [Jinja2](https://github.com/pallets/jinja).
 
 
 ## Installation

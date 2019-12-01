@@ -9,6 +9,7 @@
       "nova-cluster"
     ],
     "Nova Directives": [
+      "hypernova-handlebars-directive",
       "hypernova-jinja2-directive",
       "hypernova-blade-directive"
     ],

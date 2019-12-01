@@ -4,6 +4,8 @@ title: Laravel Blade Nova Directive
 sidebar_label: Laravel Blade
 ---
 
+[hypernova-blade-directive](https://github.com/ara-framework/hypernova-blade-directive) enables you render a Hypernova placeholder for [Nova Proxy](https://github.com/ara-framework/nova-proxy) using [Laravel Blade](https://laravel.com/docs/5.8/blade).
+
 ## Setup
 Install Nova Directive for Laravel Blade using Composer inside the project folder.
 
