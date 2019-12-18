@@ -6,6 +6,7 @@
       "render-on-page"
     ],
     "Tools": [
+      "nova-proxy",
       "nova-cluster"
     ],
     "Nova Directives": [
