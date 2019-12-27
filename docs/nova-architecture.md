@@ -1,7 +1,7 @@
 ---
 id: nova-architecture
-title: The Nova architecture
-sidebar_label: Nova architecture
+title: The Nova architecture (Universal Rendering)
+sidebar_label: Nova architecture (Universal Rendering)
 ---
 
 Nova came up as a base architecture to integrate Micro-frontends in any existing web framework regardless of what programming language it's built atop.

@@ -152,10 +152,10 @@ class Index extends React.Component {
             title: 'Tech Agnostic',
           },
           {
-            content: 'Server-side render Nova views and hydrate them on the browser to make them interactive.',
-            image: `${baseUrl}img/undraw_landing_page.svg`,
+            content: 'Server-side render Nova views and hydrate them on the browser to make them interactive, or just Client-Side render them on your SPA.',
+            image: `${baseUrl}img/undraw_static_assets.svg`,
             imageAlign: 'top',
-            title: 'Universal Rendering',
+            title: 'Client-Side and Universal Rendering',
           },
           {
             content: 'You can render Nova views on any web technology and framework such as Nuxt, GatsbyJS, WordPress, Flask and more.',

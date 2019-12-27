@@ -4,7 +4,7 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-Ara is a framework to develop and integrate Micro-frontends easily using [Airbnb's Hypernova](https://github.com/airbnb/hypernova). We call **Nova** to each Hypernova service.
+Ara is a framework to develop and integrate Micro-frontends easily using [Airbnb's Hypernova](https://github.com/airbnb/hypernova). We tend to call **Nova** to each Hypernova service.
 
 ## Installing Ara CLI
 
@@ -39,6 +39,10 @@ The command by default creates a Nova service using Vue.js but you can use anoth
 ara new:nova novas/global -t vue
 ```
 
+For using only **Client-Side rendering** type `n` when the command asks `Do you want to include Server-Side Rendering (SSR) (Y/n)`.
+
+Read more about the [SPA architecture](/website/docs/nova-spa-architecture).
+
 The service created contains the entry point for the Nova server in `src/index.js` and the entry point for the browser in `src/client.js`.
 
 ## Run the Nova service.
@@ -47,7 +51,7 @@ The service created contains the entry point for the Nova server in `src/index.j
 npm run dev
 ```
 
-This command executes the Nova sever on http://localhost:3000 and it restarts the server every time the code changes.
+This command executes the Nova sever on http://localhost:3000 and restarts the server every time the code changes.
 
 ## Test the Nova service
 

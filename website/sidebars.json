@@ -2,6 +2,7 @@
   "docs": {
     "Getting Started": [
       "nova-architecture",
+      "nova-spa-architecture",
       "quick-start",
       "render-on-page"
     ],
