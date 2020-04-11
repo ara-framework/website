@@ -22,6 +22,10 @@ const users = [
 
 const baseUrl = '/website/';
 const siteConfig = {
+  algolia: {
+    apiKey: '5bc14a3c57907625dcf0191f5ba91bfc',
+    indexName: 'ara-framework',
+  },
   title: 'Ara Framework', // Title for your website.
   tagline: 'Build Micro-frontends easily using Airbnb Hypernova',
   url: '"https://ara-framework.github.io', // Your website URL
